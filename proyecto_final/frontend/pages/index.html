@@ -6,107 +6,414 @@
     <title>Super Autos Medellín - Inicio</title>
     <link href="../assets/css/styles.css" rel="stylesheet">
 </head>
-<body class="bg-black font-sans leading-relaxed tracking-wide">
+<body class="bg-black font-sans leading-relaxed tracking-wide p-5">
 
     <!-- Navbar -->
-    <nav class="bg-gray-900 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
-            <img src="../assets/images/logo.png" alt="Logo Super Autos" class="max-h-20">
-            <div class="hidden md:flex space-x-6">
+    <nav class="bg-black">
+        <div class="mx-auto px-4 flex justify-between items-center h-16">
+            <img src="../assets/images/home.svg" alt="home icon" class="max-h-10">
+            <div class="flex space-x-6">
                 <a href="#" class="text-white hover:text-pink-500">Inicio</a>
                 <a href="catalog.html" class="text-white hover:text-pink-500">Catálogo</a>
                 <a href="login.html" class="text-white hover:text-pink-500">Iniciar Sesión</a>
-                <a href="signup.html" class="text-white bg-gradient-to-l from-purple-600 to-orange-400 px-4 py-2 rounded hover:text-pink-950 hover:bg-white transition-colors duration-300">Regístrate</a>
+                <a href="signup.html" class="text-white bg-gradient-to-l from-purple-700 to-rose-400 px-4 py-2 rounded  hover:scale-105 transition-colors duration-300">Regístrate</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="bg-black bg-center h-screen text-white flex flex-col items-center justify-center"
-            style="background-image: url('../assets/images/hero-bg.jpg');">
-        <h1 class="text-5xl font-bold">Grandes experiencias sobre 4 ruedas</h1>
-        <p class="mt-4 text-xl text-neutral-500 font-bold">Fácil, rápido y para todos los gustos</p>
+    <header class="bg-black bg-center h-screen text-white flex">
+        <!-- Columna izquierda (dividida en dos partes) -->
+        <div class="w-1/2 flex flex-col">
+            <!-- Mitad superior (Imagen) -->
+            <div class="h-1/6">
+                <img src="../assets/images/logo.png" alt="Logo" class="min-h-36 max-h-52 p-3">
+            </div>
+
+            <!-- Mitad inferior (Texto) -->
+            <div class="h-5/6 flex flex-col justify-center items-start p-8">
+                <h1 class="text-8xl font-bold">Grandes experiencias <br> sobre 4 ruedas</h1>
+                <p class="mt-4 text-2xl text-neutral-300 font-semibold">Fácil, rápido y para todos los gustos</p>
+            </div>
+        </div>
+
+        <!-- Columna derecha (Imagen) -->
+        <div class="w-1/2">
+            <img src="../assets/images/1.png" alt="Imagen 1" class="h-full pb-36 object-cover">
+        </div>
     </header>
 
+
+
     <!-- Sección Quiénes Somos -->
-    <section class="py-12 m-12 bg-gray-900 h-screen">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-semibold text-white">¿Quiénes Somos?</h2>
-            <p class="mt-4 text-white">
+    <section class="py-12 m-12 bg-black h-screen flex">
+        <!-- Columna izquierda (Imagen) -->
+        <div class="w-1/2 flex justify-start">
+            <img src="../assets/images/2.png" alt="image 2" class="max-w-full h-auto object-cover">
+        </div>
+
+        <!-- Columna derecha (Contenido) -->
+        <div class="w-1/3 flex flex-col justify-center items-start text-center px-6">
+            <h2 class="text-5xl font-bold text-white mb-8">¿Quiénes Somos?</h2>
+            <p class="mt-4 pr-20 text-lg text-gray-300 text-justify">
                 Fundada en 2024, Super Autos Medellín ofrece el servicio de renta de autos en Medellín, con soluciones
-                para todo tipo de viajes, sean dentro de la ciudad o sus alrededores. Nuestro equipo de expertos en
-                automóviles está aquí para ayudarte a encontrar el auto perfecto para tu viaje.
+                para todo tipo de viajes, sean dentro de la ciudad o sus alrededores, incluyendo desplazamientos urbanos
+                y escapadas al campo. <br> <br> Nuestro equipo de expertos en automóviles está aquí para ayudarte a encontrar 
+                el auto perfecto para tu viaje.
             </p>
-            <a href="catalog.html" class="text-white bg-gradient-to-l from-purple-600 to-orange-400 px-4 py-2 rounded hover:text-pink-950 hover:bg-white transition-colors duration-300">Ver Catálogo</a>
+            <!-- Botón con margen superior -->
+            <a href="catalog.html" class="text-white bg-gradient-to-l from-purple-700 to-rose-400 px-4 py-2 rounded hover:scale-105 hover:bg-white transition-colors duration-300 mt-24">
+                Ver Catálogo
+            </a>
         </div>
     </section>
 
-    <!-- Sección de Beneficios -->
-    <section class="bg-black py-12 h-screen">
+    <!-- Sección Nuestros Servicios -->
+    <section class="bg-black py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-semibold text-white">¿Por qué elegirnos?</h2>
-            <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Beneficio 1 -->
-                <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
-                    <img src="../assets/images/web.svg" alt="Búsqueda rápida" class="h-16 w-16">
-                    <h3 class="mt-4 text-xl font-semibold text-white">Búsqueda simple y rápida</h3>
-                    <p class="text-white">Paga mediante plataformas certificadas y seguras, sin preocupaciones.</p>
+            <!-- Título de la sección -->
+            <h2 class="text-8xl font-semibold text-white mb-24">Nuestros servicios</h2>
+            
+            <!-- Contenedor de columnas -->
+            <div class="md:flex md:space-x-12">
+                <!-- Columna izquierda (Imagen 3) -->
+                <div class="w-1/2 flex justify-start">
+                    <img src="../assets/images/3.png" alt="Nuestros Servicios" class="max-w-full h-auto object-cover">
                 </div>
-                <!-- Beneficio 2 -->
-                <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
-                    <img src="../assets/images/key.svg" alt="Pago seguro" class="h-16 w-16">
-                    <h3 class="mt-4 text-xl font-semibold text-white">Pago seguro</h3>
-                    <p class="text-white">Paga mediante plataformas certificadas y seguras, sin preocupaciones.</p>
-                </div>
-                <!-- Beneficio 3 -->
-                <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
-                    <img src="../assets/images/lightning.svg" alt="Reserva express" class="h-16 w-16">
-                    <h3 class="mt-4 text-xl font-semibold text-white">Reserva express</h3>
-                    <p class="text-white">Sistema de reservas sencillo e intuitivo, sin procedimientos largos.</p>
-                </div>
-                <!-- Beneficio 4 -->
-                <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
-                    <img src="../assets/images/garage.svg" alt="Virtual" class="h-16 w-16">
-                    <h3 class="mt-4 text-xl font-semibold text-white">Virtual y presencial</h3>
-                    <p class="text-white">Puedes reservar en línea o en nuestras instalaciones.</p>
+
+                <!-- Columna derecha (Lista de servicios) -->
+                <div class="md:w-1/2 text-left text-white mt-8 md:mt-0">
+                    <ul class="space-y-8">
+                        <!-- Servicio 1 -->
+                        <li>
+                            <h3 class="text-5xl font-semibold"><span class="text-gray-500 text-5xl font-bold">01 </span> Vehículos deportivos</h3>
+                            <p class="mt-2 pl-20 text-2xl">Ideales para entusiastas de la velocidad.</p>
+                        </li>
+                        <!-- Servicio 2 -->
+                        <li>
+                            <h3 class="text-5xl font-semibold"><span class="text-gray-500 text-5xl font-bold">02.</span> Sedanes último modelo</h3>
+                            <p class="mt-2 pl-20">Para un transporte cómodo y convencional, para todo tipo de destino en la ciudad y sus inmediaciones.</p>
+                        </li>
+                        <!-- Servicio 3 -->
+                        <li>
+                            <h3 class="text-5xl font-semibold"><span class="text-gray-500 text-5xl font-bold">03.</span> SUV's</h3>
+                            <p class="mt-2 pl-20">Con mayor capacidad de transporte, gran confort y equipos modernos para comodidad y utilidad garantizada.</p>
+                        </li>
+                        <!-- Servicio 4 -->
+                        <li>
+                            <h3 class="text-5xl font-semibold"><span class="text-gray-500 text-5xl font-bold">04.</span> Off-road</h3>
+                            <p class="mt-2 pl-20">Para visitar las zonas turísticas más difíciles y disfrutar del terreno complicado. Opción divertida para quienes no temen ensuciarse.</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonio -->
-    <section class="bg-gray-900 text-white py-12 h-screen">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <blockquote class="text-2xl italic font-light">
-                “Brindamos la oportunidad de experimentar la ciudad con ruedas y motores de lo más diversos”
-            </blockquote>
-            <p class="mt-4 font-semibold">- Pepito Pérez, CEO</p>
+
+
+
+    <!-- Sección de Beneficios -->
+    <section class="bg-black py-12 h-auto">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <!-- Contenedor de la sección con flex y división en 2 mitades -->
+            <div class="flex flex-col h-full">
+                
+                <!-- Mitad superior: Imagen -->
+                <div class="flex-1">
+                    <img src="../assets/images/laptop1.png" alt="Beneficios" class="w-full h-full object-cover rounded-lg shadow-lg scale-75">
+                </div>
+                
+                <!-- Mitad inferior: Beneficios -->
+                <div class="flex-1 text-white">
+                    <h2 class="text-5xl font-bold pb-20">Búsqueda simple y rápida</h2>
+                    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Beneficio 1 -->
+                        <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
+                            <img src="../assets/images/web.svg" alt="Búsqueda rápida" class="h-16 w-16">
+                            <h3 class="mt-4 text-xl font-semibold">Búsqueda simple y rápida</h3>
+                            <p class="text-white">Paga mediante plataformas certificadas y seguras, sin preocupaciones.</p>
+                        </div>
+                        <!-- Beneficio 2 -->
+                        <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
+                            <img src="../assets/images/key.svg" alt="Pago seguro" class="h-16 w-16">
+                            <h3 class="mt-4 text-xl font-semibold">Pago seguro</h3>
+                            <p class="text-white">Paga mediante plataformas certificadas y seguras, sin preocupaciones.</p>
+                        </div>
+                        <!-- Beneficio 3 -->
+                        <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
+                            <img src="../assets/images/lightning.svg" alt="Reserva express" class="h-16 w-16">
+                            <h3 class="mt-4 text-xl font-semibold">Reserva express</h3>
+                            <p class="text-white">Sistema de reservas sencillo e intuitivo, sin procedimientos largos.</p>
+                        </div>
+                        <!-- Beneficio 4 -->
+                        <div class="flex flex-col items-center bg-neutral-700 hover:transition-all duration-300 hover:scale-105 p-2">
+                            <img src="../assets/images/garage.svg" alt="Virtual" class="h-16 w-16">
+                            <h3 class="mt-4 text-xl font-semibold">Virtual y presencial</h3>
+                            <p class="text-white">Puedes reservar en línea o en nuestras instalaciones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Sección de Contacto -->
-    <section class="py-12 bg-white h-screen">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-semibold text-gray-800">Contáctanos</h2>
-            <p class="mt-4 text-gray-600">
-                Dirección: Calle 123, Carrera 45 - 67, El Poblado, Medellín, Colombia<br>
-                Teléfono: +57 987 654 3210 - (034) 444 45 56<br>
-                Correo electrónico: <a href="mailto:contacto@superautosmed.co" class="text-blue-500 hover:text-blue-600">contacto@superautosmed.co</a>
+
+<!-- Sección Testimonios -->
+<section class="relative h-screen w-full">
+    <!-- Flecha izquierda -->
+    <button class="prev absolute top-1/2 left-0 transform -translate-y-1/2 text-white text-3xl p-2 bg-black rounded-full shadow-md opacity-50 hover:opacity-100 transition-opacity duration-300 z-10">
+        &#8592;
+    </button>
+
+    <!-- Flecha derecha -->
+    <button class="next absolute top-1/2 right-0 transform -translate-y-1/2 text-white text-3xl p-2 bg-black rounded-full shadow-md opacity-50 hover:opacity-100 transition-opacity duration-300 z-10">
+        &#8594;
+    </button>
+
+    <div class="relative w-full h-full">
+        <!-- Diapositiva 1 -->
+        <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 
+        bg-gradient-to-r from-gray-700 via-gray-900 to-black 
+        flex items-center justify-center text-white">
+        
+        <!-- Capa adicional de gradientes metálicos complejos (Capa de fondo) -->
+        <div class="absolute inset-0 bg-gradient-to-tl from-gray-600 via-black to-gray-800 opacity-60 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-700 to-gray-900 opacity-40 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-bl from-gray-500 via-gray-600 to-black opacity-30 mix-blend-multiply"></div>
+    
+        <!-- Contenedor de texto, que no será afectado por las capas de fondo -->
+        <div class="relative z-10 flex flex-col items-center justify-center text-center px-80">
+            <!-- Nombre del testigo -->
+            <p class="text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">Pepito Pérez, CEO</p>
+            
+            <!-- Línea separadora -->
+            <div class="w-32 h-0.5 bg-white mb-4"></div>
+            
+            <!-- Testimonio -->
+            <p class="text-lg italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Brindamos la oportunidad de experimentar la ciudad , con ruedas y motores de lo más diversos"</p>
+        </div>
+    </div>
+    
+        
+        <!-- Diapositiva 2 -->
+        <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 
+        bg-gradient-to-r from-pink-400 via-orange-200 to-purple-500 
+        flex items-center justify-center text-white p-40">
+        
+        <!-- Capa adicional de gradientes con tonos cálidos -->
+        <div class="absolute inset-0 bg-gradient-to-tl from-pink-500 via-red-400 to-purple-300 opacity-60 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-400 opacity-40 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-bl from-orange-300 via-pink-400 to-pink-500 opacity-30 mix-blend-multiply"></div>
+        
+          <!-- Contenedor de texto -->
+          <div class="relative z-10 flex flex-col items-center justify-center text-center px-80">
+            <!-- Nombre del testigo -->
+            <p class="text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">Laura Rodríguez, CO</p>
+            
+            <!-- Línea separadora -->
+            <div class="w-32 h-0.5 bg-white mb-4"></div>
+            
+            <!-- Testimonio -->
+            <p class="text-lg italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Alquilé un auto para un evento y no puedo estar 
+                más satisfecha. La plataforma es súper intuitiva, y en minutos tenía mi reserva confirmada. Me encantó la facilidad 
+                de filtrar según lo que necesitaba, ¡y el auto estaba como nuevo! Definitivamente lo usaré de nuevo."
             </p>
+        </div>
+    </div>
+    
+    
+
+        <!-- Diapositiva 3 -->
+        <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 
+        bg-gradient-to-r from-teal-200 via-lime-200 to-sky-400 
+        flex items-center justify-center text-white">
+        
+        <!-- Capa adicional de gradientes con tonos claros -->
+        <div class="absolute inset-0 bg-gradient-to-tl from-teal-300 via-yellow-200 to-cyan-300 opacity-60 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-lime-200 via-teal-300 to-sky-500 opacity-40 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-bl from-teal-200 via-yellow-100 to-cyan-400 opacity-30 mix-blend-multiply"></div>
+        
+        <!-- Contenedor de texto -->
+        <div class="relative z-10 flex flex-col items-center justify-center text-center px-52">
+            <!-- Nombre del testigo -->
+            <p class="text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">John Marston, US</p>
+            
+            <!-- Línea separadora -->
+            <div class="w-32 h-0.5 bg-white mb-4"></div>
+            
+            <!-- Testimonio -->
+            <p class="text-lg italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Alquilé un auto para un evento y no puedo estar 
+                más satisfecha. La plataforma es súper intuitiva, y en minutos tenía mi reserva confirmada. Me encantó la facilidad 
+                de filtrar según lo que necesitaba, ¡y el auto estaba como nuevo! Definitivamente lo usaré de nuevo."
+            </p>
+        </div>
+    </div>
+    
+    
+    </div>
+</section>
+
+
+
+
+    <!-- Sección de Contacto -->
+    <section class="py-12 bg-black h-screen">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <!-- Título de la sección -->
+            <h2 class="text-8xl font-semibold text-white mb-8">¡Cerremos un trato!</h2>
+            
+            <!-- Contenedor de la sección con 2 columnas -->
+            <div class="md:flex md:space-x-12">
+                <!-- Columna izquierda (Imagen) -->
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="../assets/images/deal.png" alt="Image deal" class=" h-full object-cover rounded-lg shadow-lg">
+                </div>
+
+                <!-- Columna derecha (Información de contacto y mapa) -->
+                <div class="md:w-1/2 text-left text-white">
+                    <!-- Información de contacto -->
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold">Dirección</h3>
+                            <p class="text-pink-500 mt-2">
+                                <a href="https://www.google.com/maps?q=Calle+123,+Carrera+45+-+67,+El+Poblado,+Medellín,+Colombia" target="_blank">Calle 123, Carrera 45 - 67, El Poblado, Medellín, Colombia</a>
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">Teléfono</h3>
+                            <p class="text-pink-500 mt-2">
+                                <a href="tel:+579876543210">+57 987 654 3210</a> - <a href="tel:+5734444556">(034) 444 45 56</a>
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">Correo electrónico</h3>
+                            <p class="text-pink-500 mt-2">
+                                <a href="mailto:contacto@superautosmed.co">contacto@superautosmed.co</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Mapa de Google Maps -->
+                    <div class="mt-8">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3966.421397679662!2d-75.57704652428765!3d6.20801702674763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1ses!2sco!4v1731657733051!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <p class="text-center md:text-left">&copy; 2024 Super Autos Medellín. Todos los derechos reservados.</p>
-            <div class="flex space-x-4 mt-4 md:mt-0">
-                <a href="#" class="text-white hover:text-blue-500">Facebook</a>
-                <a href="#" class="text-white hover:text-blue-500">Instagram</a>
-                <a href="#" class="text-white hover:text-blue-500">Twitter</a>
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Logo e Información Breve -->
+                <div>
+                    <img src="../assets/images/logo.png" alt="Logo Super Autos" class="h-10 mb-4">
+                    <p class="text-gray-400">
+                        Super Autos Medellín ofrece un servicio de alquiler de vehículos de alta calidad, 
+                        adaptado a todas tus necesidades de viaje dentro y fuera de la ciudad.
+                    </p>
+                    <p class="mt-4 text-gray-400">&copy; 2024 Super Autos Medellín. Todos los derechos reservados.</p>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white">Enlaces Rápidos</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-pink-500">Inicio</a></li>
+                        <li><a href="catalog.html" class="text-gray-400 hover:text-pink-500">Catálogo</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-pink-500">Sobre Nosotros</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-pink-500">Preguntas Frecuentes</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-pink-500">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white">Contáctanos</h3>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li>Dirección: Calle 123, Carrera 45 - 67, El Poblado, Medellín, Colombia</li>
+                        <li>Teléfono: +57 987 654 3210</li>
+                        <li>Email: <a href="mailto:contacto@superautosmed.co" class="hover:text-pink-500">contacto@superautosmed.co</a></li>
+                        <li>Horarios: Lun - Vie: 8:00 AM - 6:00 PM</li>
+                    </ul>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><img src="../assets/images/fb.svg" alt="Facebook" class="h-6 w-6"></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><img src="../assets/images/ig.svg" alt="Instagram" class="h-6 w-6"></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><img src="../assets/images/wpp.svg" alt="whatsapp" class="h-6 w-6"></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500"><img src="../assets/images/linkedin.svg" alt="LinkedIn" class="h-6 w-6"></a>
+                    </div>
+                </div>
+
+                <!-- Suscripción al Newsletter -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white">Suscríbete a nuestro Newsletter</h3>
+                    <p class="mt-4 text-gray-400">Recibe las últimas novedades y ofertas exclusivas en tu correo.</p>
+                    <form class="mt-4">
+                        <input type="email" placeholder="Ingresa tu correo" class="w-full px-3 py-2 rounded bg-neutral-800 text-gray-200 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                        <button type="submit" class="mt-3 w-full bg-gradient-to-l from-purple-700 to-rose-400 hover:scale-105 text-white py-2 rounded font-semibold">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Links Legales y Otros -->
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center md:text-left">
+                <ul class="flex flex-col md:flex-row justify-between text-gray-400 text-sm">
+                    <li class="mb-2 md:mb-0"><a href="terms.html" class="hover:text-pink-500">Términos y Condiciones</a></li>
+                    <li class="mb-2 md:mb-0"><a href="privacy.html" class="hover:text-pink-500">Política de Privacidad</a></li>
+                    <li class="mb-2 md:mb-0"><a href="cookies.html" class="hover:text-pink-500">Política de Cookies</a></li>
+                    <li class="mb-2 md:mb-0"><a href="careers.html" class="hover:text-pink-500">Carreras</a></li>
+                    <li class="mb-2 md:mb-0"><a href="partners.html" class="hover:text-pink-500">Afiliados</a></li>
+                </ul>
             </div>
         </div>
     </footer>
 
+
 </body>
 </html>
+
+
+<script>
+// Seleccionamos todas las diapositivas
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+// El índice de la diapositiva activa
+let currentSlide = 0;
+
+// Función para cambiar la diapositiva
+function changeSlide() {
+    // Primero, ocultamos todas las diapositivas
+    slides.forEach((slide) => {
+        slide.classList.remove('opacity-100');
+        slide.classList.add('opacity-0');
+        slide.classList.add('animate-fadeOut'); // Añadimos la animación de fadeOut
+    });
+
+    // Luego mostramos la diapositiva activa con fadeIn
+    const current = slides[currentSlide];
+    current.classList.remove('opacity-0');
+    current.classList.add('opacity-100');
+    current.classList.add('animate-fadeIn'); // Añadimos la animación de fadeIn
+}
+
+// Función para ir a la diapositiva anterior
+prevBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Ciclo hacia atrás
+    changeSlide();
+});
+
+// Función para ir a la diapositiva siguiente
+nextBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % slides.length; // Ciclo hacia adelante
+    changeSlide();
+});
+
+// Inicializamos mostrando la primera diapositiva
+changeSlide();
+
+</script>
