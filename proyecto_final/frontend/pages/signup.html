@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta</title>
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white h-screen flex flex-col items-center justify-between ">
+
+    <!-- NavBar -->
+    <div class="bg-gradient-to-r from-rose-400 to-purple-700 scroll-pb-2 w-full">
+        <div class="w-full h-16 flex items-center justify-between flex-col">
+            <nav class="w-full h-16 flex items-center justify-between bg-black border-b-2 border-rose-400">
+                <a href="index.html" class="ml-4">
+                    <img src="../assets/images/home.svg" alt="Home" class="h-8">
+                </a>
+                <img src="../assets/images/logocar.png" alt="Logo" class="w-auto h-16 flex items-center justify-center">
+                <div class="mr-4"></div> <!-- Espacio vacío para equilibrar -->
+            </nav>
+            <img src="../assets/images/letters.png" alt="Logo" class="w-auto h-12 flex items-center justify-center">
+        </div>  
+    </div>
+
+    <!-- Formulario de Signup -->
+    <main class="w-full max-w-md px-6">
+        <!-- Logo -->
+        <div class="flex justify-center"></div>
+        <!-- Título -->
+        <h1 class="text-3xl font-bold text-center mt-6">Crear Cuenta</h1>
+        <!-- Subtítulo -->
+        <p class="text-center mt-2">
+            ¿Ya tienes una cuenta? 
+            <a href="login.html" class="text-rose-400 hover:underline">Haz clic aquí</a>
+        </p>
+        <!-- Formulario -->
+        <form class="mt-6 space-y-4">
+            <!-- Campo de Nickname -->
+            <div>
+                <input 
+                    type="text" 
+                    placeholder="Ingrese su Nickname" 
+                    class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+            </div>
+            <!-- Campo de Email -->
+            <div>
+                <input 
+                    type="email" 
+                    placeholder="Ingrese su E-mail" 
+                    class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+            </div>
+            <!-- Campo de Contraseña -->
+            <div>
+                <input 
+                    type="password" 
+                    placeholder="Ingrese su contraseña" 
+                    class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+            </div>
+            <!-- Campo de Fecha de Nacimiento -->
+            <div>
+                <input 
+                    type="date" 
+                    class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
+                >
+            </div>
+            <!-- Botón de Crear Cuenta -->
+            <div>
+                <button 
+                    type="submit" 
+                    class="w-full py-2 text-white font-bold bg-gradient-to-r from-rose-400 to-purple-700 rounded hover:opacity-90"
+                >
+                    Crear Cuenta
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Espacio vacío para equilibrar -->
+    <div class="h-16 flex items-center justify-between"></div>
+
+</body>
+</html>
