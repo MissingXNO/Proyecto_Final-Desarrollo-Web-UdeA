@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Vehículo</title>
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white h-screen flex flex-col">
+
+    <!-- NavBar -->
+    <div class="bg-gradient-to-r from-rose-400 to-purple-700 pb-1">
+        <nav class="bg-black">
+            <div class="mx-auto px-4 flex justify-between items-center h-16">
+                <img src="../assets/images/home.svg" alt="home icon" class="max-h-10">
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-pink-500">Inicio</a>
+                    <a href="catalog.html" class="text-white hover:text-pink-500">Catálogo</a>
+                    <a href="login.html" class="text-white hover:text-pink-500">Iniciar Sesión</a>
+                    <a href="signup.html" class="text-white bg-gradient-to-l from-purple-700 to-rose-400 px-4 py-2 rounded  hover:scale-105 transition-colors duration-300">Regístrate</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Cuerpo de la Página -->
+    <main class="flex flex-col flex-grow items-center justify-center">
+
+        <!-- Tarjeta de Descripción del Vehículo -->
+        <section class="w-full max-w-4xl bg-gradient-to-r from-rose-400 to-purple-700 rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
+            <!-- Imagen del Vehículo -->
+            <div class="w-full md:w-1/3">
+                <img src="../assets/images/placeholder_car.png" alt="Vehículo" class="h-full w-full object-cover p-5">
+            </div>
+            <!-- Información del Vehículo -->
+            <div class="w-full md:w-2/3 p-4 overflow-y-auto max-h-56 md:max-h-none">
+                <h1 class="text-2xl font-bold mb-4">Ford Fiesta</h1>
+                <ul class="text-gray-300 space-y-2">
+                    <li><strong>Fabricante:</strong> Ford</li>
+                    <li><strong>Año:</strong> 2022</li>
+                    <li><strong>Transmisión:</strong> Automática</li>
+                    <li><strong>Categoría:</strong> Hatchback</li>
+                    <li><strong>Capacidad:</strong> 5 pasajeros</li>
+                </ul>
+                <p class="mt-4 text-gray-400">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit, ligula vel laoreet tincidunt, odio eros 
+                    imperdiet arcu, vitae vehicula velit arcu a nulla. Etiam in vehicula ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                </p>
+            </div>
+        </section>
+
+        <!-- Información Inferior -->
+        <section class="w-full max-w-4xl mt-6 bg-gray-800 rounded-lg p-4  space-y-4">
+            <p class="text-xl font-semibold text-rose-400">PRECIO POR DÍA: $32 USD</p>
+            <div class="flex justify-between">
+                <p>¿Quieres reservar este vehículo? Haz clic aquí:</p>
+                <button class="mt-2 px-6 py-2 bg-gradient-to-r from-rose-400 to-purple-500 text-white rounded-lg font-semibold hover:opacity-90">
+                    Reservar
+                </button>
+            </div>
+            <div class="flex justify-between">
+                <p>¿Tienes dudas sobre cómo es rentar con nosotros? Haz clic aquí:</p>
+                <button class="mt-2 px-6 py-2 bg-gradient-to-r from-cyan-500 to-indigo-600 text-white rounded-lg font-semibold hover:opacity-90">
+                    Políticas de Alquiler
+                </button>
+            </div>
+        </section>
+        
+    </main>
+
+</body>
+</html>
