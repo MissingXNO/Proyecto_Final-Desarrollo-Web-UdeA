@@ -5,27 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Vehículos</title>
     <link href="../assets/css/styles.css" rel="stylesheet">
-    <script>
-        // Función para manejar los submenús desplegables
-        function toggleMenu(id) {
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu.id === id) {
-                    menu.classList.toggle('hidden');
-                } else {
-                    menu.classList.add('hidden');
-                }
-            });
-        }
 
-        // Función para asegurar que solo un checkbox esté seleccionado
-        function selectOnlyThis(id, group) {
-            document.querySelectorAll(`.${group}`).forEach(checkbox => {
-                if (checkbox.id !== id) {
-                    checkbox.checked = false;
-                }
-            });
-        }
-    </script>
 </head>
 <body class="bg-black text-white flex flex-col">
 
@@ -98,7 +78,7 @@
     </div>
 
     <!-- Banner Promocional -->
-    <div class="bg-gradient-to-r from-gray-800 to-gray-700 my-4 xl:mx-80">
+    <div class="bg-gradient-to-r from-cyan-500 to-indigo-700 my-4 xl:mx-80 p-1">
         <img src="../assets/images/promo.png" alt="Promoción" class="w-full h-full object-cover border-spacing-96 border-blue-500">
     </div>
 
@@ -194,3 +174,50 @@
     </footer>
 
 </html>
+
+
+<script>
+    // Función para manejar los submenús desplegables
+    function toggleMenu(id) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            if (menu.id === id) {
+                menu.classList.toggle('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        });
+    }
+
+    // Función para asegurar que solo un checkbox esté seleccionado
+    function selectOnlyThis(id, group) {
+        document.querySelectorAll(`.${group}`).forEach(checkbox => {
+            if (checkbox.id !== id) {
+                checkbox.checked = false;
+            }
+        });
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const container = document.querySelector('.grid');
+        
+        try {
+            // Llamar a la API de vehículos
+            const response = await fetch('http://localhost:3000/api/vehicles');
+            const vehicles = await response.json();
+
+            // Generar las tarjetas de los vehículos
+            container.innerHTML = vehicles.map(vehicle => `
+                <a href="vehicle.html?id=${vehicle.id}" class="bg-gray-800 rounded-lg p-4 text-center">
+                <img src="${vehicle.image_url}" alt="${vehicle.name}" class="h-32 w-full object-cover rounded">
+                <p class="mt-2 text-gray-300 font-semibold">${vehicle.name}</p>
+                </a>
+            `).join('');
+
+        } catch (error) {
+            console.error('Error al cargar los vehículos:', error);
+            container.innerHTML = `<p class="text-red-500">Error al cargar los vehículos. Intenta nuevamente más tarde.</p>`;
+        }
+    });
+</script>

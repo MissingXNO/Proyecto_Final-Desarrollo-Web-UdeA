@@ -29,11 +29,13 @@
         <!-- Tarjeta de Descripción del Vehículo -->
         <section class="w-full max-w-4xl bg-gradient-to-r from-rose-400 to-purple-700 rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
             <!-- Imagen del Vehículo -->
+            <!-- Imagen del Vehículo -->
             <div class="w-full md:w-1/3">
-                <img src="../assets/images/placeholder_car.png" alt="Vehículo" class="h-full w-full object-cover p-5">
+                <img id="vehicle-image" src="../assets/images/placeholder_car.png" alt="Vehículo" class="h-full w-full object-cover p-5">
             </div>
+
             <!-- Información del Vehículo -->
-            <div class="w-full md:w-2/3 p-4 overflow-y-auto max-h-56 md:max-h-none">
+            <div id="placeholder-img" class="w-full md:w-2/3 p-4 overflow-y-auto max-h-56 md:max-h-none">
                 <h1 class="text-2xl font-bold mb-4">Ford Fiesta</h1>
                 <ul class="text-gray-300 space-y-2">
                     <li><strong>Fabricante:</strong> Ford</li>
@@ -70,3 +72,50 @@
 
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Obtener el ID del vehículo de la URL
+        const params = new URLSearchParams(window.location.search);
+        const vehicleId = params.get('id');
+
+        // Verificar si el ID está presente
+        if (!vehicleId) {
+            console.error('No se proporcionó un ID de vehículo en la URL.');
+            return;
+        }
+
+        try {
+            // Hacer la solicitud a la API para obtener los detalles del vehículo
+            const response = await fetch(`http://localhost:3000/api/vehicles/${vehicleId}`);
+            if (!response.ok) throw new Error('Error al obtener los detalles del vehículo');
+            
+            const vehicle = await response.json();
+
+            // Actualizar la página con los datos del vehículo
+            document.querySelector('h1').textContent = vehicle.name;
+            
+            // Seleccionar la imagen del vehículo por ID y actualizar su URL
+            const vehicleImage = document.getElementById('vehicle-image');  // Seleccionar la imagen por ID
+            vehicleImage.src = vehicle.image_url;  // Aquí se actualiza la imagen del vehículo
+            vehicleImage.alt = vehicle.name;       // Aquí se actualiza el texto alternativo (alt)
+
+            // Actualizar los detalles del vehículo
+            const details = document.querySelector('ul');
+            details.innerHTML = `
+                <li><strong>Fabricante:</strong> ${vehicle.manufacturer}</li>
+                <li><strong>Año:</strong> ${vehicle.year}</li>
+                <li><strong>Transmisión:</strong> ${vehicle.transmission}</li>
+                <li><strong>Categoría:</strong> ${vehicle.category}</li>
+                <li><strong>Capacidad:</strong> ${vehicle.capacity} pasajeros</li>
+            `;
+            document.querySelector('p.text-gray-400').textContent = vehicle.description;
+            document.querySelector('p.text-rose-400').textContent = `PRECIO POR DÍA: $${vehicle.price_per_day} USD`;
+
+        } catch (error) {
+            console.error('Error al cargar los detalles del vehículo:', error);
+            const main = document.querySelector('main');
+            main.innerHTML = `<p class="text-red-500 text-center">Error al cargar los detalles del vehículo. Intenta nuevamente más tarde.</p>`;
+        }
+    });
+</script>
