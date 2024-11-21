@@ -34,10 +34,11 @@
             <a href="login.html" class="text-rose-400 hover:underline">Haz clic aquí</a>
         </p>
         <!-- Formulario -->
-        <form class="mt-6 space-y-4">
+        <form id="signup-form" class="mt-6 space-y-4">
             <!-- Campo de Nickname -->
             <div>
                 <input 
+                    id="username" 
                     type="text" 
                     placeholder="Ingrese su Nickname" 
                     class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
@@ -46,6 +47,7 @@
             <!-- Campo de Email -->
             <div>
                 <input 
+                    id="email"
                     type="email" 
                     placeholder="Ingrese su E-mail" 
                     class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
@@ -54,6 +56,7 @@
             <!-- Campo de Contraseña -->
             <div>
                 <input 
+                    id="password"
                     type="password" 
                     placeholder="Ingrese su contraseña" 
                     class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
@@ -62,6 +65,7 @@
             <!-- Campo de Fecha de Nacimiento -->
             <div>
                 <input 
+                    id="birthdate"
                     type="date" 
                     class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
                 >
@@ -69,6 +73,7 @@
             <!-- Botón de Crear Cuenta -->
             <div>
                 <button 
+                    id="submit-button"
                     type="submit" 
                     class="w-full py-2 text-white font-bold bg-gradient-to-r from-rose-400 to-purple-700 rounded hover:opacity-90"
                 >
@@ -76,10 +81,68 @@
                 </button>
             </div>
         </form>
+        <!-- Mensaje de Error o Éxito -->
+        <div id="response-message" class="mt-4 text-center text-red-500 hidden"></div>
     </main>
 
     <!-- Espacio vacío para equilibrar -->
     <div class="h-16 flex items-center justify-between"></div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+
+            // Obtener los datos del formulario
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const birthdate = document.getElementById('birthdate').value;
+
+            // Validar si la edad es mayor a 18 años
+            const age = new Date().getFullYear() - new Date(birthdate).getFullYear();
+            if (age < 18) {
+                document.getElementById('response-message').textContent = 'Debes ser mayor de 18 años para registrarte.';
+                document.getElementById('response-message').classList.remove('hidden');
+                return;
+            }
+
+            // Preparar los datos para enviar
+            const userData = {
+                username,
+                email,
+                password,
+                birthdate
+            };
+
+            try {
+                // Enviar los datos del formulario a la API
+                const response = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Mostrar mensaje de éxito y redirigir o algo similar
+                    document.getElementById('response-message').textContent = 'Cuenta creada con éxito. Redirigiendo...';
+                    document.getElementById('response-message').classList.remove('hidden');
+                    setTimeout(() => window.location.href = 'login.html', 2000); // Redirigir al login después de 2 segundos
+                } else {
+                    // Mostrar mensaje de error
+                    document.getElementById('response-message').textContent = data.error || 'Hubo un error al crear la cuenta.';
+                    document.getElementById('response-message').classList.remove('hidden');
+                }
+            } catch (error) {
+                // En caso de error en la solicitud
+                document.getElementById('response-message').textContent = 'Error de conexión. Intenta nuevamente.';
+                document.getElementById('response-message').classList.remove('hidden');
+            }
+        });
+    </script>
 
 </body>
 </html>

@@ -22,12 +22,10 @@
         </div>  
     </div>
 
-
     <!-- Formulario de Login -->
     <main class="w-full max-w-md px-6">
         <!-- Logo -->
         <div class="flex justify-center">
-            
         </div>
         <!-- Título -->
         <h1 class="text-3xl font-bold text-center mt-6">Iniciar Sesión</h1>
@@ -37,10 +35,11 @@
             <a href="signup.html" class="text-rose-400 hover:underline">Haz clic aquí</a>
         </p>
         <!-- Formulario -->
-        <form class="mt-6 space-y-4">
+        <form id="login-form" class="mt-6 space-y-4">
             <!-- Campo de Nickname -->
             <div>
                 <input 
+                    id="nickname"
                     type="text" 
                     placeholder="Ingrese su Nickname" 
                     class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
@@ -49,6 +48,7 @@
             <!-- Campo de Contraseña -->
             <div>
                 <input 
+                    id="password"
                     type="password" 
                     placeholder="Ingrese su contraseña" 
                     class="w-full px-4 py-2 bg-gray-800 text-gray-200 placeholder-gray-500 rounded focus:outline-none focus:ring-2 focus:ring-rose-400"
@@ -64,12 +64,60 @@
                 </button>
             </div>
         </form>
+
+        <!-- Mensaje de Error o Éxito -->
+        <div id="response-message" class="mt-4 text-center text-red-500 hidden"></div>
     </main>
 
-        <!-- NavBar -->
-        <dive class="h-16 flex items-center justify-between">
-            <!-- Espacio vacío para equilibrar -->
-        </dive>
+    <!-- Espacio vacío para equilibrar -->
+    <div class="h-16 flex items-center justify-between"></div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+
+            // Obtener los datos del formulario
+            const nickname = document.getElementById('nickname').value;
+            const password = document.getElementById('password').value;
+
+            // Preparar los datos para enviar
+            const loginData = {
+                nickname,
+                password
+            };
+
+            try {
+                // Enviar los datos del formulario a la API
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(loginData),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Guardar el token en localStorage o sessionStorage
+                    localStorage.setItem('authToken', data.token);
+
+                    // Mostrar mensaje de éxito y redirigir o algo similar
+                    document.getElementById('response-message').textContent = 'Inicio de sesión exitoso. Redirigiendo...';
+                    document.getElementById('response-message').classList.remove('hidden');
+                    setTimeout(() => window.location.href = 'index.html', 2000); // Redirigir al inicio después de 2 segundos
+                } else {
+                    // Mostrar mensaje de error
+                    document.getElementById('response-message').textContent = data.error || 'Hubo un error al iniciar sesión.';
+                    document.getElementById('response-message').classList.remove('hidden');
+                }
+            } catch (error) {
+                // En caso de error en la solicitud
+                document.getElementById('response-message').textContent = 'Error de conexión. Intenta nuevamente.';
+                document.getElementById('response-message').classList.remove('hidden');
+            }
+        });
+    </script>
 
 </body>
 </html>
