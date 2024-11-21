@@ -209,9 +209,9 @@
 
             // Generar las tarjetas de los vehículos
             container.innerHTML = vehicles.map(vehicle => `
-                <a href="vehicle.html?id=${vehicle.id}" class="bg-gray-800 rounded-lg p-4 text-center">
+                <a href="vehicle.html?id=${vehicle.id}" class="bg-gradient-to-r from-rose-400 to-purple-400 rounded-lg p-4 text-center">
                 <img src="${vehicle.image_url}" alt="${vehicle.name}" class="h-32 w-full object-cover rounded">
-                <p class="mt-2 text-gray-300 font-semibold">${vehicle.name}</p>
+                <p class="mt-2 text-white font-semibold">${vehicle.name}</p>
                 </a>
             `).join('');
 

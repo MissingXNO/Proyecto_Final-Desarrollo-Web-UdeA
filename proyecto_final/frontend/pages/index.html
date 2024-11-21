@@ -22,7 +22,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="bg-black bg-center h-screen text-white flex">
+    <header class="bg-black bg-center h-screen text-white flex fade-in">
         <!-- Columna izquierda (dividida en dos partes) -->
         <div class="w-1/2 flex flex-col">
             <!-- Mitad superior (Imagen) -->
@@ -46,7 +46,7 @@
 
 
     <!-- Sección Quiénes Somos -->
-    <section class="py-12 m-12 bg-black h-screen flex">
+    <section class="py-12 m-12 bg-black h-screen flex fade-in">
         <!-- Columna izquierda (Imagen) -->
         <div class="w-1/2 flex justify-start">
             <img src="../assets/images/2.png" alt="image 2" class="max-w-full h-auto object-cover">
@@ -69,7 +69,7 @@
     </section>
 
     <!-- Sección Nuestros Servicios -->
-    <section class="bg-black py-12">
+    <section class="bg-black py-12 fade-in">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <!-- Título de la sección -->
             <h2 class="text-8xl font-semibold text-white mb-24">Nuestros servicios</h2>
@@ -114,7 +114,7 @@
 
 
     <!-- Sección de Beneficios -->
-    <section class="bg-black py-12 h-auto">
+    <section class="bg-black py-12 h-auto fade-in">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <!-- Contenedor de la sección con flex y división en 2 mitades -->
             <div class="flex flex-col h-full">
@@ -160,7 +160,7 @@
 
 
 <!-- Sección Testimonios -->
-<section class="relative h-screen w-full">
+<section class="relative h-screen w-full fade-in">
     <!-- Flecha izquierda -->
     <button class="prev absolute top-1/2 left-0 transform -translate-y-1/2 text-white text-3xl p-2 bg-black rounded-full shadow-md opacity-50 hover:opacity-100 transition-opacity duration-300 z-50">
         &#8592;
@@ -258,7 +258,7 @@
 
 
     <!-- Sección de Contacto -->
-    <section class="py-12 bg-black h-screen">
+    <section class="py-12 bg-black h-screen fade-in">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <!-- Título de la sección -->
             <h2 class="text-8xl font-semibold text-white mb-8">¡Cerremos un trato!</h2>
@@ -304,7 +304,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-12">
+    <footer class="bg-black text-white py-12 fade-in">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 
@@ -413,7 +413,57 @@ nextBtn.addEventListener('click', () => {
     changeSlide();
 });
 
-// Inicializamos mostrando la primera diapositiva
+// Inicializar mostrando la primera diapositiva
 changeSlide();
 
 </script>
+
+<style>
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);  /* Desplazamiento inicial */
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .fade-out {
+        opacity: 0;
+        transform: translateY(20px);  /* Desplazamiento hacia abajo */
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+</style>
+
+
+<script>
+    // Crear el IntersectionObserver
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Si el elemento está en el viewport, añadir la clase 'fade-in-visible'
+            if (entry.isIntersecting) {
+                // Asegúrate de que el fade-out no esté activo si el elemento está visible
+                entry.target.classList.remove('fade-out');
+                entry.target.classList.add('fade-in-visible');
+            } else {
+                // Si el elemento sale del viewport, añadir la clase 'fade-out'
+                entry.target.classList.remove('fade-in-visible');
+                entry.target.classList.add('fade-out');
+            }
+        });
+    }, {
+        rootMargin: '0px 0px -50px 0px'  // Opcional: Comienza a animar antes de entrar completamente
+    });
+
+    // Seleccionar todos los elementos con la clase .fade-in
+    const fadeInElements = document.querySelectorAll('.fade-in');
+
+    // Comenzar a observar cada elemento
+    fadeInElements.forEach(element => {
+        observer.observe(element);
+    });
+</script>
+
+
