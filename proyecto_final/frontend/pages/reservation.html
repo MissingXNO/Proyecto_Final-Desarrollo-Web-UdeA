@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Reservas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen">
+
+    <!-- Cabecera -->
+    <header class="bg-gradient-to-r from-rose-400 to-purple-700 w-full p-4">
+        <nav class="flex justify-between items-center">
+            <a href="index.html">
+                <img src="../assets/images/home.svg" alt="Home" class="h-8">
+            </a>
+            <div class="text-center">
+                <img src="../assets/images/logocar.png" alt="Logo" class="h-16">
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="w-full max-w-md px-6 py-6 bg-gradient-to-r from-rose-400 to-purple-700 rounded-lg shadow-lg mt-10">
+
+        <!-- Información del Usuario -->
+        <section class="mb-6">
+            <h2 class="text-2xl font-bold text-center">USUARIO</h2>
+            <div class="mt-4 text-center">
+                <p id="username">Nombre: Cargando...</p>
+                <p id="email">Email: Cargando...</p>
+            </div>
+        </section>
+
+        <!-- Información de la Reserva -->
+        <section class="mb-6">
+            <h2 class="text-2xl font-bold text-center">RESERVA</h2>
+            <div class="mt-4 text-center">
+                <p id="vehicle-name">Vehículo: Cargando...</p>
+                <p id="start-date">Fecha de inicio: Cargando...</p>
+                <p id="end-date">Fecha de terminación: Cargando...</p>
+                <p id="no-reservation" class="hidden text-red-500">No tienes ninguna reserva activa.</p>
+            </div>
+        </section>
+
+        <!-- Botones -->
+        <div class="flex justify-center space-x-4 mt-6">
+            <button id="view-vehicle" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg hidden">
+                Ver Vehículo
+            </button>
+            <button id="cancel-reservation" class="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg hidden">
+                Cancelar Reserva
+            </button>
+        </div>
+    </main>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('authToken');
+
+        if (!token) {
+            console.error("No hay token de autenticación.");
+            return;
+        }
+
+        try {
+            // Obtener los datos del usuario
+            const userResponse = await fetch('http://localhost:3000/api/users/me', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!userResponse.ok) {
+                throw new Error('Error al obtener los datos del usuario');
+            }
+
+            const userData = await userResponse.json();
+            document.querySelector('#username').textContent = `Nombre: ${userData.username}`;
+            document.querySelector('#email').textContent = `Email: ${userData.email}`;
+
+            // Obtener la reserva activa
+            const reservationResponse = await fetch('http://localhost:3000/api/reservations', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!reservationResponse.ok) {
+                if (reservationResponse.status === 404) {
+                    document.querySelector('#no-reservation').classList.remove('hidden');
+                    return;
+                }
+                throw new Error('Error al obtener la reserva');
+            }
+
+            const reservation = await reservationResponse.json();
+
+            // Actualizar la página con los datos de la reserva
+            document.querySelector('#vehicle-name').textContent = `Vehículo: ${reservation.vehicle_name}`;
+            document.querySelector('#start-date').textContent = `Fecha de inicio: ${reservation.start_date}`;
+            document.querySelector('#end-date').textContent = `Fecha de terminación: ${reservation.end_date}`;
+
+            // Mostrar los botones
+            document.querySelector('#view-vehicle').classList.remove('hidden');
+            document.querySelector('#cancel-reservation').classList.remove('hidden');
+
+            // Agregar funcionalidad a los botones
+            document.querySelector('#view-vehicle').addEventListener('click', () => {
+                window.location.href = `vehicle.html?id=${reservation.vehicle_id}`;
+            });
+
+            document.querySelector('#cancel-reservation').addEventListener('click', async () => {
+                try {
+                    const cancelResponse = await fetch('http://localhost:3000/api/reservations', {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    if (!cancelResponse.ok) {
+                        throw new Error('Error al cancelar la reserva');
+                    }
+
+                    alert('Reserva cancelada con éxito.');
+                    window.location.reload();
+                } catch (error) {
+                    console.error('Error al cancelar la reserva:', error);
+                }
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('authToken');
+    const reservedButtons = document.getElementById('reserved-vehicle-buttons');
+    const viewReservedVehicleButton = document.getElementById('view-reserved-vehicle');
+
+    if (!token) {
+        console.error("No hay token de autenticación.");
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/api/reservations', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener la reserva activa.');
+        }
+
+        const reservation = await response.json();
+
+        // Comprobar si la reserva contiene un ID de vehículo
+        if (reservation && reservation.vehicle_id) {
+            console.log(`Vehicle ID encontrado: ${reservation.vehicle_id}`); // Debugging
+            reservedButtons.classList.remove('hidden'); // Mostrar los botones
+            viewReservedVehicleButton.setAttribute('href', `vehicle.html?id=${reservation.vehicle_id}`); // Asignar dinámicamente el ID
+        } else {
+            console.error('No se encontró un ID de vehículo en la reserva.');
+        }
+    } catch (error) {
+        console.error('Error al procesar la reserva:', error);
+    }
+});
+
+
+</script>

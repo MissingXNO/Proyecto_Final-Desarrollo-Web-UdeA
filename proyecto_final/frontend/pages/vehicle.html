@@ -55,7 +55,7 @@
             <p class="text-xl font-semibold text-rose-400">PRECIO POR DÍA: $32 USD</p>
             <div class="flex justify-between">
                 <p>¿Quieres reservar este vehículo? Haz clic aquí:</p>
-                <button class="mt-2 px-6 py-2 bg-gradient-to-r from-rose-400 to-purple-500 text-white rounded-lg font-semibold hover:opacity-90">
+                <button id="reserve-button" class="mt-2 px-6 py-2 bg-gradient-to-r from-rose-400 to-purple-500 text-white rounded-lg font-semibold hover:opacity-90">
                     Reservar
                 </button>
             </div>
@@ -116,5 +116,38 @@
             const main = document.querySelector('main');
             main.innerHTML = `<p class="text-red-500 text-center">Error al cargar los detalles del vehículo. Intenta nuevamente más tarde.</p>`;
         }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const reserveButton = document.querySelector('#reserve-button');
+
+        reserveButton.addEventListener('click', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const vehicleId = params.get('id');
+
+            const startDate = '2024-11-22'; // Fecha de ejemplo
+            const endDate = '2024-11-25'; // Fecha de ejemplo
+
+            try {
+                const response = await fetch('http://localhost:3000/api/reservations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Token del usuario logueado
+                    },
+                    body: JSON.stringify({ vehicleId, startDate, endDate }),
+                });
+
+                if (!response.ok) throw new Error('No se pudo realizar la reserva');
+
+                const data = await response.json();
+                alert(data.message); // Mostrar mensaje al usuario
+            } catch (error) {
+                console.error(error);
+                alert('Error al realizar la reserva');
+            }
+        });
     });
 </script>

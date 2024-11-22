@@ -1,0 +1,15 @@
+import express from 'express';
+import { reserveVehicle, getReservationByUser, cancelReservation } from '../controllers/reservationController.mjs';
+
+const router = express.Router();
+
+// Ruta para realizar una reserva
+router.post('/', reserveVehicle);
+
+// Ruta para obtener la reserva activa del usuario
+router.get('/', getReservationByUser);
+
+// Ruta para cancelar la reserva
+router.delete('/', cancelReservation);
+
+export default router;

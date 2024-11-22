@@ -1,5 +1,5 @@
 import express from 'express';
-import { createUser, findUserByEmail, findUserByUsername } from '../models/userModel.mjs';
+import { createUser, findUserByEmail, findUserByUsername, findUserById } from '../models/userModel.mjs';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -62,6 +62,49 @@ router.post('/login', async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Error al iniciar sesión' });
     }
-}); 
+});
+
+// Función para verificar y decodificar el token JWT
+export const verifyToken = (authorization) => {
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+        throw new Error('Token faltante o inválido');
+    }
+
+    const token = authorization.split(' ')[1];
+    return jwt.verify(token, process.env.JWT_SECRET); // Decodifica y verifica el token
+};
+
+// Ruta para obtener los datos del usuario logueado
+router.get('/me', async (req, res) => {
+    const { authorization } = req.headers; // Obtener el token de la cabecera de autorización
+
+    // Verificar si el token está presente
+    if (!authorization || !authorization.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Token faltante o inválido.' });
+    }
+
+    try {
+        // Extraer el token de la cabecera
+        const token = authorization.split(' ')[1];
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);  // Decodificar el token
+        const userId = decoded.id;  // Extraer el ID del usuario
+
+        // Obtener los datos del usuario a partir del ID
+        const user = await findUserById(userId);  // Asegúrate de tener este método en tu modelo
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado.' });
+        }
+
+        // Devolver los datos del usuario
+        res.status(200).json({
+            id: user.id,
+            username: user.username,
+            email: user.email
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al obtener los datos del usuario.' });
+    }
+});
 
 export default router;

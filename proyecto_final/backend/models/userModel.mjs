@@ -23,3 +23,9 @@ export const findUserByUsername = async (username) => {
     const result = await pool.query(query, [username]);
     return result.rows[0];  // Retorna el usuario encontrado, si existe
 };
+
+export const findUserById = async (id) => {
+    const query = 'SELECT * FROM users WHERE id = $1';
+    const result = await pool.query(query, [id]);
+    return result.rows[0]; // Devuelve el usuario si existe
+};

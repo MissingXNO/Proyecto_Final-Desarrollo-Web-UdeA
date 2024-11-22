@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import vehicleRoutes from './routes/vehicleRoutes.mjs';
 import authRoutes from './routes/authRoutes.mjs';
 import dotenv from 'dotenv';
+import reservationRoutes from './routes/reservationRoutes.mjs';
 
 
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/auth', authRoutes);
-
+app.use('/api/reservations', reservationRoutes);
+app.use('/api/users', authRoutes);
 
 export default app;
