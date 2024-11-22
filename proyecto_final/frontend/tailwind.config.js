@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.html", "./assets/js/**/*.js"],
+  content: ["./pages/**/*.html", "./assets/js/**/*.js", "./components/**/*.html"],
   theme: {
     extend: {
       opacity: {
