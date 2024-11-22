@@ -1,4 +1,4 @@
-import { createReservation, getReservationByUserId as getReservationFromDB, cancelReservationByUserId } from '../models/reservationModel.mjs';
+import { createReservation, getReservationByUserId as getReservationFromDB, cancelReservationByUserId, getAllReservations  } from '../models/reservationModel.mjs';
 import jwt from 'jsonwebtoken';
 
 // Controlador para realizar una reserva
@@ -102,5 +102,22 @@ export const getReservationByUser = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error al obtener la reserva del usuario' });
+    }
+};
+
+
+export const getReservedVehicleIds = async (req, res) => {
+    try {
+        // Consultar la base de datos y obtener todas las reservas
+        const reservations = await getAllReservations(); // Obtener todas las reservas
+        const reservedVehicleIds = reservations.map(r => r.vehicle_id); // Extraer los IDs de vehículos reservados
+
+        // Verifica si reservedVehicleIds es un array
+        console.log('reservedVehicleIds:', reservedVehicleIds);
+
+        res.json(reservedVehicleIds); // Retorna el array de IDs
+    } catch (error) {
+        console.error('Error al obtener disponibilidad:', error);
+        res.status(500).json({ error: 'Error interno al obtener disponibilidad' });
     }
 };

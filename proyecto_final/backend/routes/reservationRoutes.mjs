@@ -1,5 +1,6 @@
 import express from 'express';
 import { reserveVehicle, getReservationByUser, cancelReservation } from '../controllers/reservationController.mjs';
+import { getReservedVehicleIds } from '../controllers/reservationController.mjs';
 
 const router = express.Router();
 
@@ -11,5 +12,8 @@ router.get('/', getReservationByUser);
 
 // Ruta para cancelar la reserva
 router.delete('/', cancelReservation);
+
+// Ruta para obtener la disponibilidad de los vehiculos
+router.get('/vehicle-availability', getReservedVehicleIds);
 
 export default router;

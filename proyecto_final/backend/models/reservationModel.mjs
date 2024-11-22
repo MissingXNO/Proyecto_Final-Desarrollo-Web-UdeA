@@ -39,3 +39,10 @@ export const getReservationByUserId = async (userId) => {
     const result = await pool.query(query, [userId]);
     return result.rows[0]; // Retorna la reserva si existe
 };
+
+// Obtener todas las reservas activas
+export const getAllReservations = async () => {
+    const query = 'SELECT vehicle_id FROM reservations'; // Solo extrae los vehicle_id
+    const { rows } = await pool.query(query); // Usa pool.query en lugar de db.query
+    return rows;
+};
