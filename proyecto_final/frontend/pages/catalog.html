@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Vehículos</title>
     <link href="../assets/css/styles.css" rel="stylesheet">
-
 </head>
 <body class="bg-black text-white flex flex-col">
 
@@ -20,10 +19,10 @@
                 <button onclick="toggleMenu('transmision-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">TRANSMISIÓN ↓</button>
                 <div id="transmision-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-transmision" id="manual" onclick="selectOnlyThis('manual', 'filter-transmision')"> Manual
+                        <input type="checkbox" class="filter-transmision" id="manual"> Manual
                     </label>
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-transmision" id="automatico" onclick="selectOnlyThis('automatico', 'filter-transmision')"> Automático
+                        <input type="checkbox" class="filter-transmision" id="automática"> Automática
                     </label>
                 </div>
             </div>
@@ -31,10 +30,10 @@
                 <button onclick="toggleMenu('disponibilidad-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">DISPONIBILIDAD ↓</button>
                 <div id="disponibilidad-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-disponibilidad" id="disponible" onclick="selectOnlyThis('disponible', 'filter-disponibilidad')"> Disponible
+                        <input type="checkbox" class="filter-disponibilidad" id="disponible"> Disponible
                     </label>
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-disponibilidad" id="proximamente" onclick="selectOnlyThis('proximamente', 'filter-disponibilidad')"> Próximamente
+                        <input type="checkbox" class="filter-disponibilidad" id="proximamente"> Próximamente
                     </label>
                 </div>
             </div>
@@ -42,10 +41,31 @@
                 <button onclick="toggleMenu('fabricante-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">FABRICANTE ↓</button>
                 <div id="fabricante-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-fabricante" id="ford" onclick="selectOnlyThis('ford', 'filter-fabricante')"> Ford
+                        <input type="checkbox" class="filter-fabricante" id="ford"> Ford
                     </label>
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-fabricante" id="toyota" onclick="selectOnlyThis('toyota', 'filter-fabricante')"> Toyota
+                        <input type="checkbox" class="filter-fabricante" id="toyota"> Toyota
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-fabricante" id="nissan"> Nissan
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-fabricante" id="chevrolet"> Chevrolet
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-fabricante" id="mazda"> Mazda
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-fabricante" id="porsche"> Porsche
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-fabricante" id="ferrari"> Ferrari
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-fabricante" id="jeep"> Jeep
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-fabricante" id="renault"> Renault
                     </label>
                 </div>
             </div>
@@ -53,11 +73,24 @@
                 <button onclick="toggleMenu('categoria-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">CATEGORÍA ↓</button>
                 <div id="categoria-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-categoria" id="suv" onclick="selectOnlyThis('suv', 'filter-categoria')"> SUV
+                        <input type="checkbox" class="filter-categoria" id="suv"> SUV
                     </label>
                     <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-categoria" id="sedan" onclick="selectOnlyThis('sedan', 'filter-categoria')"> Sedan
+                        <input type="checkbox" class="filter-categoria" id="sedan"> Sedan
                     </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-categoria" id="hatchback"> Hatchback
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-categoria" id="pickup"> Pickup
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-categoria" id="coupe"> Coupe
+                    </label>
+                    <label class="block px-4 py-2">
+                        <input type="checkbox" class="filter-categoria" id="wagon"> Wagon
+                    </label>
+                    
                 </div>
             </div>
         </div>
@@ -68,33 +101,15 @@
         <img src="../assets/images/promo.png" alt="Promoción" class="w-full h-full object-cover border-spacing-96 border-blue-500">
     </div>
 
-    <!-- Texto de Información -->
-    <div class="mx-auto max-w-7xl px-4 py-6 flex justify-between items-center">
-        <p class="text-sm md:text-lg mx-14">
-            Haz clic sobre el vehículo de tu preferencia para ver más detalles. <br>
-            Los vehículos con fecha indicada estarán disponibles próximamente.
-        </p>
-        <button class="mt-2 px-6 py-2 bg-gradient-to-r from-cyan-500 to-indigo-600 text-white rounded-lg font-semibold hover:opacity-90">
-            Políticas de Alquiler
-        </button>
+    <!-- Mosaico de Vehículos -->
+    <div class="mx-auto max-w-7xl px-4 py-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="vehicles-container">
+        <!-- Vehículos serán agregados aquí dinámicamente -->
     </div>
 
-    <!-- Mosaico de Vehículos -->
-    <div class="mx-auto max-w-7xl px-4 py-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <!-- Tarjetas de Vehículos -->
-        <a href="vehicle.html" class="bg-gray-800 rounded-lg p-4 text-center">
-            <img src="../assets/images/placeholder_car.png" alt="Vehículo 1" class="h-32 w-full object-cover rounded">
-            <p class="mt-2 text-gray-300 font-semibold">Vehículo 1</p>
-        </a>
-        <!-- Repetir para el resto de los vehículos -->
-    </div>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
 
 </body>
-
-<div id="footer-placeholder"></div>
-
-</html>
-
 
 <script>
     // Función para manejar los submenús desplegables
@@ -108,32 +123,50 @@
         });
     }
 
-    // Función para asegurar que solo un checkbox esté seleccionado
-    function selectOnlyThis(id, group) {
-        document.querySelectorAll(`.${group}`).forEach(checkbox => {
-            if (checkbox.id !== id) {
-                checkbox.checked = false;
-            }
+    // Función para manejar la selección de filtros
+    function applyFilters(vehicles) {
+        const selectedTransmision = Array.from(document.querySelectorAll('.filter-transmision:checked')).map(el => el.id);
+        const selectedDisponibilidad = Array.from(document.querySelectorAll('.filter-disponibilidad:checked')).map(el => el.id);
+        const selectedFabricante = Array.from(document.querySelectorAll('.filter-fabricante:checked')).map(el => el.id);
+        const selectedCategoria = Array.from(document.querySelectorAll('.filter-categoria:checked')).map(el => el.id);
+
+        return vehicles.filter(vehicle => {
+            const matchesTransmision = selectedTransmision.length === 0 || selectedTransmision.includes(vehicle.transmission.toLowerCase());
+            const matchesDisponibilidad = selectedDisponibilidad.length === 0 || selectedDisponibilidad.includes(vehicle.availability.toLowerCase());
+            const matchesFabricante = selectedFabricante.length === 0 || selectedFabricante.includes(vehicle.manufacturer.toLowerCase());
+            const matchesCategoria = selectedCategoria.length === 0 || selectedCategoria.includes(vehicle.category.toLowerCase());
+
+            return matchesTransmision && matchesDisponibilidad && matchesFabricante && matchesCategoria;
         });
     }
-</script>
 
-<script>
     document.addEventListener('DOMContentLoaded', async () => {
-        const container = document.querySelector('.grid');
-        
+        const container = document.querySelector('#vehicles-container');
+
         try {
-            // Llamar a la API de vehículos
             const response = await fetch('http://localhost:3000/api/vehicles');
             const vehicles = await response.json();
 
-            // Generar las tarjetas de los vehículos
-            container.innerHTML = vehicles.map(vehicle => `
-                <a href="vehicle.html?id=${vehicle.id}" class="bg-gradient-to-r from-rose-400 to-purple-400 rounded-lg p-4 text-center">
-                <img src="${vehicle.image_url}" alt="${vehicle.name}" class="h-32 w-full object-cover rounded">
-                <p class="mt-2 text-white font-semibold">${vehicle.name}</p>
-                </a>
-            `).join('');
+            // Función para mostrar los vehículos
+            function showVehicles(vehiclesToDisplay) {
+                container.innerHTML = vehiclesToDisplay.map(vehicle => `
+                    <a href="vehicle.html?id=${vehicle.id}" class="bg-gradient-to-r from-rose-400 to-purple-400 rounded-lg p-4 text-center">
+                        <img src="${vehicle.image_url}" alt="${vehicle.name}" class="h-32 w-full object-cover rounded">
+                        <p class="mt-2 text-white font-semibold">${vehicle.name}</p>
+                    </a>
+                `).join('');
+            }
+
+            // Inicialmente mostrar todos los vehículos
+            showVehicles(vehicles);
+
+            // Añadir un event listener para cada filtro
+            document.querySelectorAll('.filter-transmision, .filter-disponibilidad, .filter-fabricante, .filter-categoria').forEach(filter => {
+                filter.addEventListener('change', () => {
+                    const filteredVehicles = applyFilters(vehicles);
+                    showVehicles(filteredVehicles);
+                });
+            });
 
         } catch (error) {
             console.error('Error al cargar los vehículos:', error);
@@ -141,6 +174,7 @@
         }
     });
 </script>
+
 
 <script>
     // Cargar el contenido del archivo navbar.html dinámicamente
@@ -155,7 +189,6 @@
         }
     });
 </script>
-
 
 <script>
     // Cargar el contenido del archivo footer.html dinámicamente
