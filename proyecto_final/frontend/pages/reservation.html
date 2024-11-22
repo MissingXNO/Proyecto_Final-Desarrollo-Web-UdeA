@@ -4,55 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Reservas</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
 </head>
-<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen">
+<body class="bg-black text-white flex flex-col min-h-screen">
 
-    <!-- Cabecera -->
-    <header class="bg-gradient-to-r from-rose-400 to-purple-700 w-full p-4">
-        <nav class="flex justify-between items-center">
-            <a href="index.html">
-                <img src="../assets/images/home.svg" alt="Home" class="h-8">
-            </a>
-            <div class="text-center">
-                <img src="../assets/images/logocar.png" alt="Logo" class="h-16">
-            </div>
-        </nav>
-    </header>
+    <!-- NavBar -->
+    <div id="navbar-placeholder"></div>  <!-- Aquí se insertará el navbar -->
 
     <!-- Contenido Principal -->
-    <main class="w-full max-w-md px-6 py-6 bg-gradient-to-r from-rose-400 to-purple-700 rounded-lg shadow-lg mt-10">
+    <main class="flex-grow flex flex-col justify-center items-center mt-10 px-4 md:px-0">
 
-        <!-- Información del Usuario -->
-        <section class="mb-6">
-            <h2 class="text-2xl font-bold text-center">USUARIO</h2>
-            <div class="mt-4 text-center">
-                <p id="username">Nombre: Cargando...</p>
-                <p id="email">Email: Cargando...</p>
+        <!-- Información del Usuario (centrado en una tarjeta) -->
+        <section class="w-full max-w-lg px-6 py-8 bg-gradient-to-r from-rose-400 to-purple-700 rounded-lg shadow-lg mb-8">
+            <h2 class="text-3xl font-bold text-center mb-6">USUARIO</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-gray-800">
+                <p id="username" class="text-xl">Nombre: Cargando...</p>
+                <p id="email" class="text-xl">Email: Cargando...</p>
             </div>
         </section>
 
-        <!-- Información de la Reserva -->
-        <section class="mb-6">
-            <h2 class="text-2xl font-bold text-center">RESERVA</h2>
-            <div class="mt-4 text-center">
-                <p id="vehicle-name">Vehículo: Cargando...</p>
-                <p id="start-date">Fecha de inicio: Cargando...</p>
-                <p id="end-date">Fecha de terminación: Cargando...</p>
+        <!-- Información de la Reserva (centrada en una tarjeta) -->
+        <section class="w-full max-w-lg px-6 py-8 bg-gradient-to-r from-rose-400 to-purple-700 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-6">RESERVA</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-gray-800">
+                <p id="vehicle-name" class="text-xl">Vehículo: Cargando...</p>
+                <p id="start-date" class="text-xl">Fecha de inicio: Cargando...</p>
+                <p id="end-date" class="text-xl">Fecha de terminación: Cargando...</p>
                 <p id="no-reservation" class="hidden text-red-500">No tienes ninguna reserva activa.</p>
             </div>
         </section>
 
         <!-- Botones -->
         <div class="flex justify-center space-x-4 mt-6">
-            <button id="view-vehicle" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg hidden">
+            <a id="view-vehicle" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg hidden">
                 Ver Vehículo
-            </button>
+            </a>
             <button id="cancel-reservation" class="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg hidden">
                 Cancelar Reserva
             </button>
         </div>
     </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>  <!-- Aquí se insertará el footer -->
+
 </body>
 </html>
 
@@ -102,10 +97,24 @@
 
             const reservation = await reservationResponse.json();
 
+            // Función para formatear las fechas
+            const formatDate = (dateString) => {
+                const date = new Date(dateString);
+                const options = { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: '2-digit', 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    hour12: false 
+                };
+                return date.toLocaleDateString('es-ES', options).replace(',', ' -');
+            };
+
             // Actualizar la página con los datos de la reserva
             document.querySelector('#vehicle-name').textContent = `Vehículo: ${reservation.vehicle_name}`;
-            document.querySelector('#start-date').textContent = `Fecha de inicio: ${reservation.start_date}`;
-            document.querySelector('#end-date').textContent = `Fecha de terminación: ${reservation.end_date}`;
+            document.querySelector('#start-date').textContent = `Fecha de inicio: ${formatDate(reservation.start_date)}`;
+            document.querySelector('#end-date').textContent = `Fecha de terminación: ${formatDate(reservation.end_date)}`;
 
             // Mostrar los botones
             document.querySelector('#view-vehicle').classList.remove('hidden');
@@ -131,7 +140,8 @@
                     }
 
                     alert('Reserva cancelada con éxito.');
-                    window.location.reload();
+                    window.location.href = 'catalog.html';
+
                 } catch (error) {
                     console.error('Error al cancelar la reserva:', error);
                 }
@@ -141,44 +151,19 @@
             console.error(error);
         }
     });
+</script>
 
+
+<script>
+    // Cargar el contenido del archivo navbar.html dinámicamente
     document.addEventListener('DOMContentLoaded', async () => {
-    const token = localStorage.getItem('authToken');
-    const reservedButtons = document.getElementById('reserved-vehicle-buttons');
-    const viewReservedVehicleButton = document.getElementById('view-reserved-vehicle');
-
-    if (!token) {
-        console.error("No hay token de autenticación.");
-        return;
-    }
-
-    try {
-        const response = await fetch('http://localhost:3000/api/reservations', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al obtener la reserva activa.');
+        try {
+            const response = await fetch('../components/navbar.html');
+            if (!response.ok) throw new Error('No se pudo cargar el navbar');
+            const navbarHTML = await response.text();
+            document.getElementById('navbar-placeholder').innerHTML = navbarHTML;
+        } catch (error) {
+            console.error('Error al cargar el navbar:', error);
         }
-
-        const reservation = await response.json();
-
-        // Comprobar si la reserva contiene un ID de vehículo
-        if (reservation && reservation.vehicle_id) {
-            console.log(`Vehicle ID encontrado: ${reservation.vehicle_id}`); // Debugging
-            reservedButtons.classList.remove('hidden'); // Mostrar los botones
-            viewReservedVehicleButton.setAttribute('href', `vehicle.html?id=${reservation.vehicle_id}`); // Asignar dinámicamente el ID
-        } else {
-            console.error('No se encontró un ID de vehículo en la reserva.');
-        }
-    } catch (error) {
-        console.error('Error al procesar la reserva:', error);
-    }
-});
-
-
+    });
 </script>

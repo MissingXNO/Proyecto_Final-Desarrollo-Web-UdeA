@@ -9,19 +9,7 @@
 <body class="bg-black text-white h-screen flex flex-col">
 
     <!-- NavBar -->
-    <div class="bg-gradient-to-r from-rose-400 to-purple-700 pb-1">
-        <nav class="bg-black">
-            <div class="mx-auto px-4 flex justify-between items-center h-16">
-                <img src="../assets/images/home.svg" alt="home icon" class="max-h-10">
-                <div class="flex space-x-6">
-                    <a href="#" class="text-white hover:text-pink-500">Inicio</a>
-                    <a href="catalog.html" class="text-white hover:text-pink-500">Catálogo</a>
-                    <a href="login.html" class="text-white hover:text-pink-500">Iniciar Sesión</a>
-                    <a href="signup.html" class="text-white bg-gradient-to-l from-purple-700 to-rose-400 px-4 py-2 rounded  hover:scale-105 transition-colors duration-300">Regístrate</a>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <div id="navbar-placeholder"></div>
 
     <!-- Cuerpo de la Página -->
     <main class="flex flex-col flex-grow items-center justify-center">
@@ -151,3 +139,19 @@
         });
     });
 </script>
+
+<script>
+    // Cargar el contenido del archivo navbar.html dinámicamente
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('../components/navbar.html');
+            if (!response.ok) throw new Error('No se pudo cargar el navbar');
+            const navbarHTML = await response.text();
+            document.getElementById('navbar-placeholder').innerHTML = navbarHTML;
+        } catch (error) {
+            console.error('Error al cargar el navbar:', error);
+        }
+    });
+</script>
+
+
