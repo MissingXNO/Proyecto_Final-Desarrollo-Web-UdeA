@@ -6,57 +6,56 @@
     <title>Super Autos Medellín - Inicio</title>
     <link href="../assets/css/styles.css" rel="stylesheet">
 </head>
-<body class="bg-black font-sans leading-relaxed tracking-wide p-5">
+<body class="bg-black font-sans leading-relaxed tracking-wide p-2 md:p-5">
 
     <!-- NavBar -->
     <div id="navbar-placeholder"></div>
 
     <!-- Hero Section -->
-    <header class="bg-black bg-center h-screen text-white flex fade-in">
-        <!-- Columna izquierda (dividida en dos partes) -->
-        <div class="w-1/2 flex flex-col">
-            <!-- Mitad superior (Imagen) -->
-            <div class="h-1/6">
-                <img src="../assets/images/logo.png" alt="Logo" class="min-h-36 max-h-52 p-3">
+    <header class="bg-black min-h-screen text-white flex flex-col md:flex-row fade-in py-4">
+        <!-- Columna izquierda -->
+        <div class="w-auto h-auto flex flex-col">
+            <!-- Logo -->
+            <div class="h-auto md:h-1/6">
+                <img src="../assets/images/logo.png" alt="Logo" class="h-24 md:min-h-36 md:max-h-52 p-3 mx-auto md:mx-0">
             </div>
 
-            <!-- Mitad inferior (Texto) -->
-            <div class="h-5/6 flex flex-col justify-center items-start p-8">
-                <h1 class="text-8xl font-bold">Grandes experiencias <br> sobre 4 ruedas</h1>
-                <p class="mt-4 text-2xl text-neutral-300 font-semibold">Fácil, rápido y para todos los gustos</p>
+            <!-- Texto -->
+            <div class="h-auto md:h-5/6 flex flex-col justify-center items-center md:items-start p-4 md:p-8 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold">Grandes experiencias <br> sobre 4 ruedas</h1>
+                <p class="mt-4 text-xl md:text-2xl text-neutral-300 font-semibold">Fácil, rápido y para todos los gustos</p>
             </div>
         </div>
 
-        <!-- Columna derecha (Imagen) -->
-        <div class="w-1/2">
-            <img src="../assets/images/1.png" alt="Imagen 1" class="h-full pb-36 object-cover">
+        <!-- Columna derecha -->
+        <div class="w-full md:w-1/2 mt-4 md:mt-0">
+            <img src="../assets/images/1.png" alt="Imagen 1" class="w-full h-auto md:h-full md:pb-36 object-cover">
         </div>
     </header>
 
 
 
-    <!-- Sección Quiénes Somos -->
-    <section class="py-12 m-12 bg-black h-screen flex fade-in">
-        <!-- Columna izquierda (Imagen) -->
-        <div class="w-1/2 flex justify-start">
-            <img src="../assets/images/2.png" alt="image 2" class="max-w-full h-auto object-cover">
-        </div>
+   <!-- Sección Quiénes Somos -->
+   <section class="py-8 md:py-12 m-4 md:m-12 bg-black min-h-screen flex flex-col md:flex-row items-center fade-in">
+    <!-- Columna izquierda -->
+    <div class="w-full md:w-1/2 mb-8 md:mb-0">
+        <img src="../assets/images/2.png" alt="image 2" class="w-full h-auto object-cover">
+    </div>
 
-        <!-- Columna derecha (Contenido) -->
-        <div class="w-1/3 flex flex-col justify-center items-start text-center px-6">
-            <h2 class="text-5xl font-bold text-white mb-8">¿Quiénes Somos?</h2>
-            <p class="mt-4 pr-20 text-lg text-gray-300 text-justify">
-                Fundada en 2024, Super Autos Medellín ofrece el servicio de renta de autos en Medellín, con soluciones
-                para todo tipo de viajes, sean dentro de la ciudad o sus alrededores, incluyendo desplazamientos urbanos
-                y escapadas al campo. <br> <br> Nuestro equipo de expertos en automóviles está aquí para ayudarte a encontrar 
-                el auto perfecto para tu viaje.
-            </p>
-            <!-- Botón con margen superior -->
-            <a href="catalog.html" class="text-white bg-gradient-to-l from-purple-700 to-rose-400 px-4 py-2 rounded hover:scale-105 hover:bg-white transition-colors duration-300 mt-24">
-                Ver Catálogo
-            </a>
-        </div>
-    </section>
+    <!-- Columna derecha -->
+    <div class="w-full md:w-2/3 flex flex-col justify-center items-center md:items-start text-center md:text-left px-4 md:px-6">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 md:mb-8">¿Quiénes Somos?</h2>
+        <p class="mt-4 text-base md:text-lg text-gray-300 text-justify pr-0 md:pr-20">
+            Fundada en 2024, Super Autos Medellín ofrece el servicio de renta de autos en Medellín, con soluciones
+            para todo tipo de viajes, sean dentro de la ciudad o sus alrededores, incluyendo desplazamientos urbanos
+            y escapadas al campo. <br><br> Nuestro equipo de expertos en automóviles está aquí para ayudarte a encontrar 
+            el auto perfecto para tu viaje.
+        </p>
+        <a href="catalog.html" class="text-white bg-gradient-to-l from-purple-700 to-rose-400 px-4 py-2 rounded hover:scale-105 hover:bg-white transition-colors duration-300 mt-12 md:mt-24">
+            Ver Catálogo
+        </a>
+    </div>
+</section>
 
     <!-- Sección Nuestros Servicios -->
     <section class="bg-black py-12 fade-in">
@@ -67,12 +66,12 @@
             <!-- Contenedor de columnas -->
             <div class="md:flex md:space-x-12">
                 <!-- Columna izquierda (Imagen 3) -->
-                <div class="w-1/2 flex justify-start">
+                <div class="md:w-1/2 flex justify-start">
                     <img src="../assets/images/3.png" alt="Nuestros Servicios" class="max-w-full h-auto object-cover">
                 </div>
 
                 <!-- Columna derecha (Lista de servicios) -->
-                <div class="md:w-1/2 text-left text-white mt-8 md:mt-0">
+                <div class="md:w-3/4 text-center md:text-left  text-white mt-8 md:mt-0">
                     <ul class="space-y-8">
                         <!-- Servicio 1 -->
                         <li>
@@ -173,15 +172,15 @@
         <div class="absolute inset-0 bg-gradient-to-bl from-gray-500 via-gray-600 to-black opacity-30 mix-blend-multiply"></div>
     
         <!-- Contenedor de texto, que no será afectado por las capas de fondo -->
-        <div class="relative z-10 flex flex-col items-center justify-center text-center px-80">
+        <div class="relative z-10 flex flex-col items-center justify-center text-center px-20">
             <!-- Nombre del testigo -->
-            <p class="text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">Pepito Pérez, CEO</p>
+            <p class="md:text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">Pepito Pérez, CEO</p>
             
             <!-- Línea separadora -->
             <div class="w-32 h-0.5 bg-white mb-4"></div>
             
             <!-- Testimonio -->
-            <p class="text-lg italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Brindamos la oportunidad de experimentar la ciudad , con ruedas y motores de lo más diversos"</p>
+            <p class="md:text-2xl italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Brindamos la oportunidad de experimentar la ciudad , con ruedas y motores de lo más diversos"</p>
         </div>
     </div>
     
@@ -189,7 +188,7 @@
         <!-- Diapositiva 2 -->
         <div class="slide absolute inset-0 opacity-100 transition-opacity duration-1000 
         bg-gradient-to-r from-pink-400 via-orange-200 to-purple-500 
-        flex items-center justify-center text-white p-40">
+        flex items-center justify-center text-white">
         
         <!-- Capa adicional de gradientes con tonos cálidos -->
         <div class="absolute inset-0 bg-gradient-to-tl from-pink-500 via-red-400 to-purple-300 opacity-60 mix-blend-multiply"></div>
@@ -197,15 +196,15 @@
         <div class="absolute inset-0 bg-gradient-to-bl from-orange-300 via-pink-400 to-pink-500 opacity-30 mix-blend-multiply"></div>
         
           <!-- Contenedor de texto -->
-          <div class="relative z-10 flex flex-col items-center justify-center text-center px-80">
+          <div class="relative z-10 flex flex-col items-center justify-center text-center px-20">
             <!-- Nombre del testigo -->
-            <p class="text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">Laura Rodríguez, CO</p>
+            <p class="md:text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">Laura Rodríguez, CO</p>
             
             <!-- Línea separadora -->
             <div class="w-32 h-0.5 bg-white mb-4"></div>
             
             <!-- Testimonio -->
-            <p class="text-lg italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Alquilé un auto para un evento y no puedo estar 
+            <p class="md:text-2xl italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Alquilé un auto para un evento y no puedo estar 
                 más satisfecha. La plataforma es súper intuitiva, y en minutos tenía mi reserva confirmada. Me encantó la facilidad 
                 de filtrar según lo que necesitaba, ¡y el auto estaba como nuevo! Definitivamente lo usaré de nuevo."
             </p>
@@ -225,16 +224,16 @@
         <div class="absolute inset-0 bg-gradient-to-bl from-teal-200 via-yellow-100 to-cyan-400 opacity-30 mix-blend-multiply"></div>
         
         <!-- Contenedor de texto -->
-        <div class="relative z-10 flex flex-col items-center justify-center text-center px-52">
+        <div class="relative z-10 flex flex-col items-center justify-center text-center px-20">
             <!-- Nombre del testigo -->
-            <p class="text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">John Marston, US</p>
+            <p class="md:text-2xl font-semibold mb-2 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">John Marston, US</p>
             
             <!-- Línea separadora -->
             <div class="w-32 h-0.5 bg-white mb-4"></div>
             
             <!-- Testimonio -->
-            <p class="text-lg italic [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Alquilé un auto para un evento y no puedo estar 
-                más satisfecha. La plataforma es súper intuitiva, y en minutos tenía mi reserva confirmada. Me encantó la facilidad 
+            <p class="italic md:text-2xl [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.5)]">"Alquilé un auto para un evento y no puedo estar 
+                más satisfecho. La plataforma es súper intuitiva, y en minutos tenía mi reserva confirmada. Me encantó la facilidad 
                 de filtrar según lo que necesitaba, ¡y el auto estaba como nuevo! Definitivamente lo usaré de nuevo."
             </p>
         </div>
@@ -405,7 +404,7 @@ changeSlide();
 </script>
 
 <script>
-    // Cargar el contenido del archivo footer.html dinámicamente
+    // Cargar el contenido del archivo navbar.html dinámicamente
     document.addEventListener('DOMContentLoaded', async () => {
         try {
             const response = await fetch('../components/footer.html');  // Ruta del footer
