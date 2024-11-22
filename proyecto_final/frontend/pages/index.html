@@ -418,5 +418,45 @@ changeSlide();
     });
 </script>
 
-
-
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const reservationLink = document.querySelector('a[href="reservation.html"]');
+    
+    if (reservationLink) {
+        reservationLink.addEventListener('click', (event) => {
+            event.preventDefault(); 
+            
+            const authToken = localStorage.getItem('authToken');
+            
+            // Check if token exists and is valid
+            if (authToken) {
+                // Verify token with backend
+                fetch('http://localhost:3000/api/verify-token', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Token is valid, go to reservations
+                        window.location.href = 'reservation.html';
+                    } else {
+                        // Token is invalid, clear localStorage and redirect to login
+                        localStorage.removeItem('authToken');
+                        window.location.href = 'login.html';
+                    }
+                })
+                .catch(error => {
+                    // Error verifying token, redirect to login
+                    localStorage.removeItem('authToken');
+                    window.location.href = 'login.html';
+                });
+            } else {
+                // No token, redirect to login
+                window.location.href = 'login.html';
+            }
+        });
+    }
+});
+</script>

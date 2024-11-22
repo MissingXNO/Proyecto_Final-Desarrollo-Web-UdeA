@@ -5,41 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Vehículos</title>
     <link href="../assets/css/styles.css" rel="stylesheet">
+
+    
 </head>
-<body class="bg-black text-white flex flex-col">
+<body class="bg-black text-white flex flex-col w-full h-auto py-2">
 
     <!-- NavBar -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Barra de Filtros -->
-    <div class="bg-gray-800 py-2 relative">
-        <div class="mx-auto max-w-7xl px-4 flex space-x-4 items-center">
-            <span class="text-gray-400">FILTROS:</span>
-            <div class="relative">
-                <button onclick="toggleMenu('transmision-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">TRANSMISIÓN ↓</button>
-                <div id="transmision-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
-                    <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-transmision" id="manual"> Manual
-                    </label>
-                    <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-transmision" id="automática"> Automática
-                    </label>
-                </div>
+
+    
+<!-- Barra de Filtros -->
+<div class="bg-gray-800 py-2 relative w-full">
+    <div class="mx-auto max-w-7xl px-4 flex flex-wrap justify-center space-x-4 space-y-4 md:space-y-0 md:space-x-6 items-center w-full">
+        <span class="text-gray-400 mb-2 md:mb-0">FILTROS:</span>
+
+        <!-- Filtro de TRANSMISIÓN -->
+        <div class="relative w-full md:w-auto">
+            <button onclick="toggleMenu('transmision-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600 w-full md:w-auto">
+                TRANSMISIÓN ↓
+            </button>
+            <div id="transmision-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden w-full md:w-auto z-10">
+                <label class="block px-4 py-2">
+                    <input type="checkbox" class="filter-transmision" id="manual"> Manual
+                </label>
+                <label class="block px-4 py-2">
+                    <input type="checkbox" class="filter-transmision" id="automática"> Automática
+                </label>
             </div>
-            <div class="relative">
-                <button onclick="toggleMenu('disponibilidad-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">DISPONIBILIDAD ↓</button>
-                <div id="disponibilidad-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
-                    <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-disponibilidad" id="disponible"> Disponible
-                    </label>
-                    <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-disponibilidad" id="proximamente"> Próximamente
-                    </label>
-                </div>
+        </div>
+
+        <!-- Filtro de DISPONIBILIDAD -->
+        <div class="relative w-full md:w-auto">
+            <button onclick="toggleMenu('disponibilidad-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600 w-full md:w-auto">
+                DISPONIBILIDAD ↓
+            </button>
+            <div id="disponibilidad-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden w-full md:w-auto z-10">
+                <label class="block px-4 py-2">
+                    <input type="checkbox" class="filter-disponibilidad" id="disponible"> Disponible
+                </label>
+                <label class="block px-4 py-2">
+                    <input type="checkbox" class="filter-disponibilidad" id="proximamente"> Próximamente
+                </label>
             </div>
-            <div class="relative">
-                <button onclick="toggleMenu('fabricante-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">FABRICANTE ↓</button>
-                <div id="fabricante-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
+        </div>
+
+        <!-- Filtro de FABRICANTE -->
+        <div class="relative w-full md:w-auto">
+            <button onclick="toggleMenu('fabricante-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600 w-full md:w-auto">
+                FABRICANTE ↓
+            </button>
+            <div id="fabricante-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden w-full md:w-auto z-50">
                     <label class="block px-4 py-2">
                         <input type="checkbox" class="filter-fabricante" id="ford"> Ford
                     </label>
@@ -69,11 +85,12 @@
                     </label>
                 </div>
             </div>
-            <div class="relative">
-                <button onclick="toggleMenu('categoria-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600">CATEGORÍA ↓</button>
-                <div id="categoria-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden">
-                    <label class="block px-4 py-2">
-                        <input type="checkbox" class="filter-categoria" id="suv"> SUV
+            <!-- Filtro de CATEGORÍA -->
+            <div class="relative w-full md:w-auto">
+                <button onclick="toggleMenu('categoria-menu')" class="text-white bg-gray-700 px-4 py-2 rounded hover:bg-gray-600 w-full md:w-auto">
+                    CATEGORÍA ↓
+                </button>
+                <div id="categoria-menu" class="dropdown-menu absolute bg-gray-900 text-gray-300 rounded shadow-lg mt-2 hidden w-full md:w-auto z-50">
                     </label>
                     <label class="block px-4 py-2">
                         <input type="checkbox" class="filter-categoria" id="sedan"> Sedan
@@ -110,6 +127,7 @@
     <div id="footer-placeholder"></div>
 
 </body>
+</html>
 
 <script>
     // Función para manejar los submenús desplegables
