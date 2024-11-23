@@ -1,0 +1,11 @@
+INSERT INTO vehicles (name, manufacturer, year, transmission, category, capacity, price_per_day, description, image_url) VALUES
+('Mazda CX-5', 'Mazda', 2022, 'Automática', 'SUV', 5, 40.00, 'Compacto, eficiente y versátil para viajes largos.', 'https://movicentro.co/wp-content/uploads/2024/08/1-2.jpg'),
+('Porsche 911', 'Porsche', 2022, 'Manual', 'Coupe', 2, 120.00, 'Elegante y potente, ideal para los amantes de la velocidad.', 'https://pugachev.miami/wp-content/uploads/2023/09/porche-911-yellow-2022-1-495x400.jpg'),
+('Ferrari F8', 'Ferrari', 2023, 'Automática', 'Coupe', 2, 150.00, 'Diseño aerodinámico y lujo extremo.', 'https://images0.autocasion.com/unsafe/500x281/ad/13/1338/256b7a6722f6900d6b4d6db9968d9fdb638f7b37.jpeg'),
+('Jeep Wrangler', 'Jeep', 2021, 'Manual', 'SUV', 5, 60.00, 'Perfecto para terrenos difíciles y aventuras off-road.', 'https://tadvantagegroupprod-com.cdn-convertus.com/uploads/sites/238/2021/04/jeep-wrangler-sport.jpg'),
+('Renault Duster', 'Renault', 2020, 'Automática', 'SUV', 5, 30.00, 'Espacioso y cómodo para la familia.', 'https://sanautos.com.co/wp-content/uploads/2023/08/exterior-delantera-renault-duster-sanautos.jpg'),
+('Ford Ranger', 'Ford', 2023, 'Manual', 'Pickup', 5, 50.00, 'Versatilidad y potencia para trabajos pesados.', 'https://www.carvajalmotorsmall.com/cdn/shop/articles/ford-ranger-xl-2023-1605087.jpg?v=1688917131&width=1100'),
+('Toyota Hilux', 'Toyota', 2022, 'Automática', 'Pickup', 5, 55.00, 'Ideal para transporte robusto en cualquier terreno.', 'https://www.toyota.com.co/wp-content/uploads/2023/04/diagonal3-p.jpg'),
+('Mazda 3', 'Mazda', 2021, 'Manual', 'Sedan', 5, 28.00, 'Compacto y eficiente para uso urbano.', 'https://vehicle-images.dealerinspire.com/97aa-110005392/3MZBPBEY4PM380091/6cf228ba994c3788bbc17ac04f00ef1f.jpg'),
+('Nissan Altima', 'Nissan', 2022, 'Automática', 'Sedan', 5, 35.00, 'Estilo moderno con confort garantizado.', 'https://www.clasificadosonline.com/PP/T/2024/10/30/10302024113538puprkpem.jpg'),
+('Chevrolet Tahoe', 'Chevrolet', 2023, 'Automática', 'SUV', 7, 75.00, 'Gran capacidad para viajes familiares.', 'https://di-uploads-pod44.dealerinspire.com/nyechevrolet/uploads/2023/10/2023_Chevrolet_Tahoe_SEO.630-1.jpg');
