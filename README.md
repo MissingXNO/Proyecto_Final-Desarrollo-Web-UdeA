@@ -10,8 +10,7 @@ El aplicativo deberá proporcionarle al usuario la posibilidad de:
 - Seleccionar algún vehiculo de su interés.
 - Ver las especificaciones técnicas e información relacionada al vehiculo
 - Realziar la reserva del vehiculo dentro de rango de fechas.
-- Realizar el pago (implementación parcial, queda pendiente de revisión)
-Respecto a la estructura princiapl de la página, se ofrecerían:
+Respecto a la estructura princiapal de la página, se ofrecerían:
 - Homepage con información básica sobre el servicio ofrecido (similar a un landing page)
 - Página de catalogo (se visualizarían los vehículos disponibles en listado o mosaico)
 - Página del vehiculo (se visualizan imágenes del mismo, descripción y especificaciones técnicas. Se permitiría la reserva del vehiculo y se permitiría escoger el periodo de tiempo para la reserva)
@@ -25,10 +24,27 @@ Requerimientos para navegación:
 Ideas adicionales:
 - Aquellos vehiculos reservados se mostrarían igualmente en el catálogo, indicando cuanto tiempo falta para que esté disponible (es decir, cuanto tiempo falta para que su periodo de alquiler actual termine)
 - Se podría agregar un mapa para ubicar la sede de la agencia (mediante servicio de Google Maps)
+
+
+# INFORMACIÓN DE INTERÉS:
+
+* Se adjunta un enlace a una video-demostración simple de la página web: https://youtu.be/_0ZGL3H2gbg 
+* En caso de modificar los scripts create_table.sql o insert_vehicles.sql, tenga muy en cuenta que estos deben estar en codificación UTF-8 para evitar problemas con los strings.
+* Se adjunta un archivo 'comandos_de_configuracion.txt' que sirve como guia sobre cómo configurar el proyecto en Visual Studio Code (Windows). También echar un vistazo a .env para obtener información para la configuración del contenedor en Docker.
+* También se recomienda seguir la guia 'comandos_de_configuracion.txt' para poder configurar y visualizar el frontend en caso no tenga experiencia con TailwindCSS. Es importante hacer el build del tailwind.congif para ver el estilizado tal cual se aprecia en el video del primer inciso.
+* El proyecto fue elaborado usando herramientas como TailwindCSS, Node.js, express, PostgreSQL, JWT, bycrypt, Docker, entre otros. Según sean requeridas, deberían instalarse las dependencias de las que no disponga.
+
+
 _______________________________________________________
+
 :  Por: Santiago Giraldo Tabares                      :
+
 :  Programa: Ingeniería Electrónica                   :
+
 :  Facultad de Ingeniería, Universidad de Antioquia   :
+
 :  Semestre 2024-2                                    :
+
 '------------------------------------------------------
+
 Este repositorio es exclusivo para el desarrollo del proyecto final del curso de desarrollo web, semestre 2024-2, UdeA.
