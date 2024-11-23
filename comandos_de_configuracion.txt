@@ -51,7 +51,6 @@ Iniciar observación de frontend
 12. npm init -y
 13. npm run build-css
 
-ALTER USER admin WITH PASSWORD '2604';
 
 ------------------------------------------------------------------------------------------
 
