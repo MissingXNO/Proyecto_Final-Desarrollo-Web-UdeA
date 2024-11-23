@@ -1,0 +1,68 @@
+CONFIGURACION DEL PROYECTO, DESDE VSC
+Los siguiente comandos deben ejecutarse en orden para configurar tanto el backend como el frontend.
+
+--------------------------------------------------------------------------------------------------
+(desde Proyecto_Final)
+
+1. docker start autos-db
+
+En caso de tener ocupado el puerto hacer lo siguiente en PowerShell con permisos de administrador:
+
+2. netstat -ano | findstr :5432
+
+Al ejecutar el comando 2, debería obtenerse lo siguiente:
+
+TCP    0.0.0.0:5432      0.0.0.0:0      LISTENING      <PID>
+
+Tome el Numero PID y ejecute el comando 3 reemplazando el PID:
+
+3. taskkill /PID <PID> /F
+
+Al ejecutar el comando 3, debería retornarse: 
+Correcto: se terminó el proceso con PID 6532.
+
+4. Volver a ejecutar comando 1.
+
+
+Verificar contenedor:
+
+5. docker ps
+6. docker exec -it autos-db psql -U admin -d autos
+7. \dt       
+8. SELECT * FROM users; 
+
+
+---------------------------------------------------------------------------------------
+
+Inicar backend
+
+(desde Proyecto_Final)
+
+9. cd ./backend
+10. npm run dev
+
+----------------------------------------------------------------------------------------
+
+Iniciar observación de frontend
+
+(desde Proyecto_Final)
+
+11. cd ./frontend
+12. npm init -y
+13. npm run build-css
+
+ALTER USER admin WITH PASSWORD '2604';
+
+------------------------------------------------------------------------------------------
+
+Para ejecutar el script create_tables.sql:
+
+(desde Proyecto_Final)
+
+14.  Get-Content scripts/sql/create_table.sql | docker exec -i autos-db psql -U admin -d autos
+
+Para ejecutar el script insert_vehicles.sql:
+
+(desde Proyecto_Final)
+
+15.  Get-Content scripts/sql/create_table.sql | docker exec -i autos-db psql -U admin -d autos
