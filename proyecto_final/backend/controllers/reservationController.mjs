@@ -91,12 +91,12 @@ export const getReservationByUser = async (req, res) => {
             return res.status(404).json({ error: 'No tienes ninguna reserva activa.' });
         }
 
-        // Incluimos el vehicle_id en la respuesta
+        // Incluir el vehicle_id en la respuesta
         res.status(200).json({
             id: reservation.id,
             start_date: reservation.start_date,
             end_date: reservation.end_date,
-            vehicle_id: reservation.vehicle_id, // Incluido el ID del vehículo
+            vehicle_id: reservation.vehicle_id, // Aqui ya está incluido el ID del vehículo
             vehicle_name: reservation.vehicle_name,
         });
     } catch (error) {

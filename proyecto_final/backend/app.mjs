@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 
-
+//End-points
 
 app.use(cors());
 app.use(bodyParser.json());

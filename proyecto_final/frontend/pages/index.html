@@ -316,44 +316,44 @@
 
 
 <script>
-// Seleccionamos todas las diapositivas
-const slides = document.querySelectorAll('.slide');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
+    // Seleccionamos todas las diapositivas
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
 
-// El índice de la diapositiva activa
-let currentSlide = 0;
+    // El índice de la diapositiva activa
+    let currentSlide = 0;
 
-// Función para cambiar la diapositiva
-function changeSlide() {
-    // Primero, ocultamos todas las diapositivas
-    slides.forEach((slide) => {
-        slide.classList.remove('opacity-100');
-        slide.classList.add('opacity-0');
-        slide.classList.add('animate-fadeOut'); // Añadimos la animación de fadeOut
+    // Función para cambiar la diapositiva
+    function changeSlide() {
+        // Primero, ocultamos todas las diapositivas
+        slides.forEach((slide) => {
+            slide.classList.remove('opacity-100');
+            slide.classList.add('opacity-0');
+            slide.classList.add('animate-fadeOut'); // Añadimos la animación de fadeOut
+        });
+
+        // Luego mostramos la diapositiva activa con fadeIn
+        const current = slides[currentSlide];
+        current.classList.remove('opacity-0');
+        current.classList.add('opacity-100');
+        current.classList.add('animate-fadeIn'); // Añadimos la animación de fadeIn
+    }
+
+    // Función para ir a la diapositiva anterior
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Ciclo hacia atrás
+        changeSlide();
     });
 
-    // Luego mostramos la diapositiva activa con fadeIn
-    const current = slides[currentSlide];
-    current.classList.remove('opacity-0');
-    current.classList.add('opacity-100');
-    current.classList.add('animate-fadeIn'); // Añadimos la animación de fadeIn
-}
+    // Función para ir a la diapositiva siguiente
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length; // Ciclo hacia adelante
+        changeSlide();
+    });
 
-// Función para ir a la diapositiva anterior
-prevBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Ciclo hacia atrás
+    // Inicializar mostrando la primera diapositiva
     changeSlide();
-});
-
-// Función para ir a la diapositiva siguiente
-nextBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % slides.length; // Ciclo hacia adelante
-    changeSlide();
-});
-
-// Inicializar mostrando la primera diapositiva
-changeSlide();
 
 </script>
 

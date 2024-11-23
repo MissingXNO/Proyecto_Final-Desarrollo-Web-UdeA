@@ -8,7 +8,7 @@
     <link rel="icon" href="../assets/images/favicon.png" type="image/png">
     
 </head>
-<body class="bg-black text-white flex flex-col w-full h-auto py-2">
+    <body class="bg-black text-white flex flex-col w-full h-auto py-2">
 
     <!-- NavBar -->
     <div id="navbar-placeholder"></div>
@@ -16,9 +16,9 @@
 
     
 <!-- Barra de Filtros -->
-<div class="bg-gray-800 py-2 relative w-full">
-    <div class="mx-auto max-w-7xl px-4 flex flex-wrap justify-center space-x-4 space-y-4 md:space-y-0 md:space-x-6 items-center w-full">
-        <span class="text-gray-400 mb-2 md:mb-0">FILTROS:</span>
+    <div class="bg-gray-800 py-2 relative w-full">
+        <div class="mx-auto max-w-7xl px-4 flex flex-wrap justify-center space-x-4 space-y-4 md:space-y-0 md:space-x-6 items-center w-full">
+            <span class="text-gray-400 mb-2 md:mb-0">FILTROS:</span>
 
         <!-- Filtro de TRANSMISIÓN -->
         <div class="relative w-full md:w-auto">
@@ -126,7 +126,7 @@
     <!-- Footer -->
     <div id="footer-placeholder"></div>
 
-</body>
+    </body>
 </html>
 
 <script>
@@ -142,80 +142,80 @@
     }
 
  // Función para manejar la selección de filtros
- function applyFilters(vehicles, reservedVehicleIds) {
-    const selectedTransmision = Array.from(document.querySelectorAll('.filter-transmision:checked')).map(el => el.id);
-    const selectedDisponibilidad = Array.from(document.querySelectorAll('.filter-disponibilidad:checked')).map(el => el.id);
-    const selectedFabricante = Array.from(document.querySelectorAll('.filter-fabricante:checked')).map(el => el.id);
-    const selectedCategoria = Array.from(document.querySelectorAll('.filter-categoria:checked')).map(el => el.id);
+    function applyFilters(vehicles, reservedVehicleIds) {
+        const selectedTransmision = Array.from(document.querySelectorAll('.filter-transmision:checked')).map(el => el.id);
+        const selectedDisponibilidad = Array.from(document.querySelectorAll('.filter-disponibilidad:checked')).map(el => el.id);
+        const selectedFabricante = Array.from(document.querySelectorAll('.filter-fabricante:checked')).map(el => el.id);
+        const selectedCategoria = Array.from(document.querySelectorAll('.filter-categoria:checked')).map(el => el.id);
 
-    return vehicles.filter(vehicle => {
-        // Comprobar la transmisión
-        const matchesTransmision = selectedTransmision.length === 0 || selectedTransmision.includes(vehicle.transmission.toLowerCase());
+        return vehicles.filter(vehicle => {
+            // Comprobar la transmisión
+            const matchesTransmision = selectedTransmision.length === 0 || selectedTransmision.includes(vehicle.transmission.toLowerCase());
 
-        // Comprobar la disponibilidad
-        let matchesDisponibilidad = false;
-        if (selectedDisponibilidad.length === 0) {
-            matchesDisponibilidad = true; // Si no hay filtros de disponibilidad seleccionados, todos los vehículos son válidos
-        } else {
-            if (selectedDisponibilidad.includes('disponible') && !reservedVehicleIds.includes(vehicle.id)) {
-                matchesDisponibilidad = true; // Vehículo disponible si no está reservado
-            } else if (selectedDisponibilidad.includes('proximamente') && reservedVehicleIds.includes(vehicle.id)) {
-                matchesDisponibilidad = true; // Vehículo próximamente si está reservado
+            // Comprobar la disponibilidad
+            let matchesDisponibilidad = false;
+            if (selectedDisponibilidad.length === 0) {
+                matchesDisponibilidad = true; // Si no hay filtros de disponibilidad seleccionados, todos los vehículos son válidos
+            } else {
+                if (selectedDisponibilidad.includes('disponible') && !reservedVehicleIds.includes(vehicle.id)) {
+                    matchesDisponibilidad = true; // Vehículo disponible si no está reservado
+                } else if (selectedDisponibilidad.includes('proximamente') && reservedVehicleIds.includes(vehicle.id)) {
+                    matchesDisponibilidad = true; // Vehículo próximamente si está reservado
+                }
             }
-        }
 
-        // Comprobar el fabricante y la categoría
-        const matchesFabricante = selectedFabricante.length === 0 || selectedFabricante.includes(vehicle.manufacturer.toLowerCase());
-        const matchesCategoria = selectedCategoria.length === 0 || selectedCategoria.includes(vehicle.category.toLowerCase());
+            // Comprobar el fabricante y la categoría
+            const matchesFabricante = selectedFabricante.length === 0 || selectedFabricante.includes(vehicle.manufacturer.toLowerCase());
+            const matchesCategoria = selectedCategoria.length === 0 || selectedCategoria.includes(vehicle.category.toLowerCase());
 
-        return matchesTransmision && matchesDisponibilidad && matchesFabricante && matchesCategoria;
-    });
-}
-
-
-
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const container = document.querySelector('#vehicles-container');
-
-    try {
-        const vehiclesResponse = await fetch('http://localhost:3000/api/vehicles');
-        const vehicles = await vehiclesResponse.json();
-
-        // Obtener los vehículos reservados
-        const availabilityResponse = await fetch('http://localhost:3000/api/vehicle-availability');
-        const reservedVehicleIds = await availabilityResponse.json();
-
-        // Función para mostrar los vehículos
-        function showVehicles(vehiclesToDisplay) {
-            container.innerHTML = vehiclesToDisplay.map(vehicle => `
-                <a href="vehicle.html?id=${vehicle.id}" class="bg-gradient-to-r from-rose-400 to-purple-400 rounded-lg p-4 text-center relative">
-                    ${reservedVehicleIds.includes(vehicle.id) ? 
-                        '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-xs rounded z-10">Proximamente</div>' : 
-                        ''
-                    }
-                    <img src="${vehicle.image_url}" alt="${vehicle.name}" class="h-32 w-full object-cover rounded ${reservedVehicleIds.includes(vehicle.id) ? 'opacity-60' : ''}">
-                    <p class="mt-2 text-white font-semibold">${vehicle.name}</p>
-                </a>
-            `).join('');
-        }
-
-        // Inicialmente mostrar todos los vehículos
-        showVehicles(vehicles);
-
-        // Añadir un event listener para cada filtro
-        document.querySelectorAll('.filter-transmision, .filter-disponibilidad, .filter-fabricante, .filter-categoria').forEach(filter => {
-            filter.addEventListener('change', () => {
-                const filteredVehicles = applyFilters(vehicles, reservedVehicleIds);
-                showVehicles(filteredVehicles);
-            });
+            return matchesTransmision && matchesDisponibilidad && matchesFabricante && matchesCategoria;
         });
-
-    } catch (error) {
-        console.error('Error al cargar los vehículos o reservas:', error);
-        container.innerHTML = `<p class="text-red-500">Error al cargar los vehículos o reservas. Intenta nuevamente más tarde.</p>`;
     }
-});
+
+
+
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const container = document.querySelector('#vehicles-container');
+
+        try {
+            const vehiclesResponse = await fetch('http://localhost:3000/api/vehicles');
+            const vehicles = await vehiclesResponse.json();
+
+            // Obtener los vehículos reservados
+            const availabilityResponse = await fetch('http://localhost:3000/api/vehicle-availability');
+            const reservedVehicleIds = await availabilityResponse.json();
+
+            // Función para mostrar los vehículos
+            function showVehicles(vehiclesToDisplay) {
+                container.innerHTML = vehiclesToDisplay.map(vehicle => `
+                    <a href="vehicle.html?id=${vehicle.id}" class="bg-gradient-to-r from-rose-400 to-purple-400 rounded-lg p-4 text-center relative">
+                        ${reservedVehicleIds.includes(vehicle.id) ? 
+                            '<div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-xs rounded z-10">Proximamente</div>' : 
+                            ''
+                        }
+                        <img src="${vehicle.image_url}" alt="${vehicle.name}" class="h-32 w-full object-cover rounded ${reservedVehicleIds.includes(vehicle.id) ? 'opacity-60' : ''}">
+                        <p class="mt-2 text-white font-semibold">${vehicle.name}</p>
+                    </a>
+                `).join('');
+            }
+
+            // Inicialmente mostrar todos los vehículos
+            showVehicles(vehicles);
+
+            // Añadir un event listener para cada filtro
+            document.querySelectorAll('.filter-transmision, .filter-disponibilidad, .filter-fabricante, .filter-categoria').forEach(filter => {
+                filter.addEventListener('change', () => {
+                    const filteredVehicles = applyFilters(vehicles, reservedVehicleIds);
+                    showVehicles(filteredVehicles);
+                });
+            });
+
+        } catch (error) {
+            console.error('Error al cargar los vehículos o reservas:', error);
+            container.innerHTML = `<p class="text-red-500">Error al cargar los vehículos o reservas. Intenta nuevamente más tarde.</p>`;
+        }
+    });
 
 </script>
 

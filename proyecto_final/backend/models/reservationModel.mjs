@@ -26,7 +26,7 @@ export const getReservationFromDB = async (userId) => {
 export const cancelReservationByUserId = async (userId) => {
     const query = 'DELETE FROM reservations WHERE user_id = $1 RETURNING *';
     const result = await pool.query(query, [userId]);
-    return result.rows[0]; // Retorna la reserva eliminada (si existe)
+    return result.rows[0]; // Retornar la reserva eliminada (si existe)
 };
 
 // Verificar si un usuario ya tiene una reserva activa
@@ -37,12 +37,12 @@ export const getReservationByUserId = async (userId) => {
         JOIN vehicles v ON r.vehicle_id = v.id
         WHERE r.user_id = $1`;
     const result = await pool.query(query, [userId]);
-    return result.rows[0]; // Retorna la reserva si existe
+    return result.rows[0]; // Retornar la reserva si existe
 };
 
 // Obtener todas las reservas activas
 export const getAllReservations = async () => {
     const query = 'SELECT vehicle_id FROM reservations'; // Solo extrae los vehicle_id
-    const { rows } = await pool.query(query); // Usa pool.query en lugar de db.query
+    const { rows } = await pool.query(query); // Usa pool.query en lugar de db.query 
     return rows;
 };

@@ -71,7 +71,7 @@ export const verifyToken = (authorization) => {
     }
 
     const token = authorization.split(' ')[1];
-    return jwt.verify(token, process.env.JWT_SECRET); // Decodifica y verifica el token
+    return jwt.verify(token, process.env.JWT_SECRET); // Decodificar y verificar el token
 };
 
 // Ruta para obtener los datos del usuario logueado
@@ -90,7 +90,7 @@ router.get('/me', async (req, res) => {
         const userId = decoded.id;  // Extraer el ID del usuario
 
         // Obtener los datos del usuario a partir del ID
-        const user = await findUserById(userId);  // Asegúrate de tener este método en tu modelo
+        const user = await findUserById(userId); 
         if (!user) {
             return res.status(404).json({ error: 'Usuario no encontrado.' });
         }

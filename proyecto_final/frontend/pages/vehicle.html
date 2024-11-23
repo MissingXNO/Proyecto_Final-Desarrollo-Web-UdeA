@@ -56,7 +56,7 @@
             </div>
         </section>
 
-        <!-- Modal de Confirmación de Reserva (Oculto inicialmente) -->
+        <!-- pop-up de Confirmación de Reserva (Oculto inicialmente) -->
         <div id="reservation-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
             <div class="bg-gray-800 p-6 rounded-lg max-w-lg w-full">
                 <h2 class="text-2xl font-semibold mb-4">Resumen de Reserva</h2>
@@ -84,7 +84,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
-    // Get the vehicle ID from the URL
+    // Obtener el id del vehiculo de la URL
     const params = new URLSearchParams(window.location.search);
     const vehicleId = params.get('id');
 
@@ -94,29 +94,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        // Fetch vehicle details
+        // consultar datos del vehiculo
         const vehicleResponse = await fetch(`http://localhost:3000/api/vehicles/${vehicleId}`);
         if (!vehicleResponse.ok) throw new Error('Failed to fetch vehicle details');
         const vehicle = await vehicleResponse.json();
 
-        // Fetch vehicle availability
+        // consultar vehiculos reservados
         const availabilityResponse = await fetch('http://localhost:3000/api/vehicle-availability');
         if (!availabilityResponse.ok) throw new Error('Failed to fetch vehicle availability');
         const reservedVehicleIds = await availabilityResponse.json();
 
-        // Get the reserve button
         const reserveButton = document.getElementById('reserve-button');
 
-        // Check if the vehicle is reserved
+        // Verificar si el vehiculo está reservado
         if (reservedVehicleIds.includes(parseInt(vehicleId))) {
-            // Disable the reserve button
+            // Deshabilitar boton de reserava
             reserveButton.disabled = true;
             reserveButton.classList.remove('from-rose-400', 'to-purple-500', 'hover:opacity-90');
             reserveButton.classList.add('bg-gray-400', 'cursor-not-allowed');
             reserveButton.textContent = 'Vehículo no disponible';
         }
 
-        // Update other vehicle details (as in the original code)
+        // Actualizar datos del vehiculo
         document.querySelector('h1').textContent = vehicle.name;
         const vehicleImage = document.getElementById('vehicle-image');
         vehicleImage.src = vehicle.image_url;
@@ -133,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('p.text-gray-400').textContent = vehicle.description;
         document.querySelector('p.text-rose-400').textContent = `PRECIO POR DÍA: $${vehicle.price_per_day} USD`;
 
-        // Store vehicle price for reservation calculation
+        // Almacenar precio por dia de alquilir del automovil
         window.vehiclePrice = vehicle.price_per_day;
 
     } catch (error) {
@@ -149,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 document.addEventListener('DOMContentLoaded', () => {
     const reserveButton = document.querySelector('#reserve-button');
     const dateSelector = document.getElementById('date-selector'); // Selector de fecha
-    const reservationModal = document.getElementById('reservation-modal'); // Modal de reserva
+    const reservationModal = document.getElementById('reservation-modal'); // pop-up de reserva
     const cancelReservationButton = document.getElementById('cancel-reservation'); // Botón cancelar
     const confirmReservationButton = document.getElementById('confirm-reservation'); // Botón confirmar
     const endDateInput = document.getElementById('end-date'); // Input de fecha
@@ -182,12 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('summary-end-date').textContent = endDate;
         document.getElementById('summary-total-price').textContent = `$${totalPrice} USD`;
 
-        // Mostrar el modal
+        // Mostrar el pop-up
         reservationModal.classList.remove('hidden');
     });
 
     cancelReservationButton.addEventListener('click', () => {
-        // Ocultar modal y restaurar la página
+        // Ocultar pop-up y restaurar la página
         reservationModal.classList.add('hidden');
         dateSelector.classList.add('hidden');
     });
@@ -197,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const vehicleId = params.get('id');
 
         try {
-            // Realizar la reserva al backend
+            // Realizar la reserva en el backend
             const response = await fetch('http://localhost:3000/api/reservations', {
                 method: 'POST',
                 headers: {
@@ -211,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
             alert(data.message); // Mostrar mensaje al usuario
-            reservationModal.classList.add('hidden'); // Cerrar el modal
+            reservationModal.classList.add('hidden'); // Cerrar el pop-up
             dateSelector.classList.add('hidden'); // Ocultar el selector de fechas
         } catch (error) {
             console.error(error);
